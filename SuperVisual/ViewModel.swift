@@ -44,6 +44,18 @@ enum CheckResult: String, Identifiable {
     var id: String { rawValue }
 }
 
+enum BGType {
+    case light
+    case dark
+    
+    var color: Color {
+        switch self {
+            case .light: return Color.white
+            case .dark: return Color.black
+        }
+    }
+}
+
 class ObservedRange: ObservableObject, Equatable {
     static func == (lhs: ObservedRange, rhs: ObservedRange) -> Bool {
         lhs.minV == rhs.minV && lhs.maxV == rhs.maxV
@@ -110,7 +122,19 @@ class ViewModel: ObservableObject {
         }
     }
     
-    @Published var megeGrid: Bool = false
+    @Published var megeGrid: Bool = false {
+        didSet {
+            UserDefaults.standard.set(megeGrid, forKey: "com.auu.megeGrid")
+            UserDefaults.standard.synchronize()
+        }
+    }
+    
+    @Published var increaseContrast: Bool = false {
+        didSet {
+            UserDefaults.standard.set(increaseContrast, forKey: "com.auu.increaseContrast")
+            UserDefaults.standard.synchronize()
+        }
+    }
     
     /// --------------------------
     /// 计算数据
@@ -128,10 +152,14 @@ class ViewModel: ObservableObject {
     @Published var normalColorInfo: RGBInfo?
     @Published var quesColorInfo: RGBInfo?
     
+    @Published var bgType: BGType?
+    
     private var nextAction: DispatchWorkItem?
     
     init() {
         self.autoNext = UserDefaults.standard.bool(forKey: "com.auu.autoNext")
+        self.megeGrid = UserDefaults.standard.bool(forKey: "com.auu.megeGrid")
+        self.increaseContrast = UserDefaults.standard.bool(forKey: "com.auu.increaseContrast")
         self.loadCachedConfigs()
         
         general()
@@ -217,6 +245,14 @@ class ViewModel: ObservableObject {
         self.selectedY = nil
         self.checkRes = .checking
         
+        let totalVal = r.original + g.original + b.original
+        if totalVal < 200 {
+            bgType = .light
+        } else if totalVal > 565 {
+            bgType = .dark
+        } else {
+            bgType = nil
+        }
     }
     
     func select(at x: Int, y: Int) {
