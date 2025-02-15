@@ -110,6 +110,8 @@ class ViewModel: ObservableObject {
         }
     }
     
+    @Published var megeGrid: Bool = false
+    
     /// --------------------------
     /// 计算数据
     
@@ -118,11 +120,6 @@ class ViewModel: ObservableObject {
     
     @Published var posx: Int = 1
     @Published var posy: Int = 1
-    
-    var size: CGSize = .zero
-    var leading: Double = 0
-    var top: Double = 0
-    var length: Double = 0
     
     @Published var selectedX: Int?
     @Published var selectedY: Int?
@@ -222,14 +219,7 @@ class ViewModel: ObservableObject {
         
     }
     
-    func tap(at point: CGPoint) {
-        if checkRes != .checking {
-            return
-        }
-        
-        let x = Int(floor((point.x - leading) / (length + 1)))
-        let y = Int(floor((point.y - top) / (length + 1)))
-        
+    func select(at x: Int, y: Int) {
         if x == posx && y == posy {
             checkRes = .right
             

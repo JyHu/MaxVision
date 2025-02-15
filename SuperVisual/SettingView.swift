@@ -76,6 +76,16 @@ struct SettingView: View {
                         }
                     }
                     
+                    GroupBox {
+                        HStack {
+                            Text("Meger Grid")
+                            
+                            Spacer()
+                            
+                            Toggle("", isOn: $viewModel.megeGrid).labelsHidden()
+                        }
+                    }
+                    
                     Button {
                         viewModel.merge(from: tmpModel)
                         dismissAction()

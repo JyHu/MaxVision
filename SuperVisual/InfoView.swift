@@ -23,7 +23,7 @@ struct InfoView: View {
     func makeContent() -> some View {
         if let normalColorInfo = normalColorInfo, let quesColorInfo = quesColorInfo {
             ScrollView {
-                Grid(horizontalSpacing: 1) {
+                Grid(horizontalSpacing: 0) {
                     GridRow {
                         HStack {
                             Spacer()
@@ -56,6 +56,7 @@ struct InfoView: View {
                         .padding(.leading, 8)
                     }
                     .fontDesign(.monospaced)
+                    
                     
                     GridRow {
                         Rectangle()
