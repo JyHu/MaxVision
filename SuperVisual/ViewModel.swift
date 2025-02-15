@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum RGB: String, Identifiable, CaseIterable {
+enum RGBComponent: String, Identifiable, CaseIterable {
     case R
     case G
     case B
@@ -20,6 +20,16 @@ enum RGB: String, Identifiable, CaseIterable {
         case .G: "Green"
         case .B: "Blue"
         }
+    }
+}
+
+struct RGBInfo {
+    let red: Int
+    let green: Int
+    let blue: Int
+    
+    var color: Color {
+        Color(red: Double(red) / 255, green: Double(green) / 255, blue: Double(blue) / 255)
     }
 }
 
@@ -52,7 +62,7 @@ class BaseModel: ObservableObject {
     @Published var obG = ObservedRange()
     @Published var obB = ObservedRange()
     
-    @Published var selectedOffsets: Set<RGB> = [.R, .G, .B]
+    @Published var selectedOffsets: Set<RGBComponent> = [.R, .G, .B]
     
     @Published var rows: Int = 5
     @Published var columns: Int = 5
@@ -88,7 +98,7 @@ class ViewModel: ObservableObject {
     @Published var obG = ObservedRange()
     @Published var obB = ObservedRange()
     
-    @Published var selectedOffsets: Set<RGB> = [.R, .G, .B]
+    @Published var selectedOffsets: Set<RGBComponent> = [.R, .G, .B]
     
     @Published var rows: Int = 5
     @Published var columns: Int = 5
@@ -117,6 +127,9 @@ class ViewModel: ObservableObject {
     @Published var selectedX: Int?
     @Published var selectedY: Int?
     @Published var checkRes: CheckResult = .checking
+    
+    @Published var normalColorInfo: RGBInfo?
+    @Published var quesColorInfo: RGBInfo?
     
     private var nextAction: DispatchWorkItem?
     
@@ -163,8 +176,8 @@ class ViewModel: ObservableObject {
         self.nextAction?.cancel()
         self.nextAction = nil
         
-        func random(offset: Double, rgb: RGB, range: ObservedRange) -> (original: Double, offseted: Double) {
-            let val = Double.random(in: Double(range.minV)...Double(range.maxV))
+        func random(offset: Int, rgb: RGBComponent, range: ObservedRange) -> (original: Int, offseted: Int) {
+            let val = Int.random(in: range.minV...range.maxV)
             
             if offset == 0 || !selectedOffsets.contains(rgb) {
                 return (val, val)
@@ -185,12 +198,20 @@ class ViewModel: ObservableObject {
             }
         }
         
-        let r = random(offset: Double(rf), rgb: .R, range: obR)
-        let g = random(offset: Double(gf), rgb: .G, range: obG)
-        let b = random(offset: Double(bf), rgb: .B, range: obB)
+        let r = random(offset: rf, rgb: .R, range: obR)
+        let g = random(offset: gf, rgb: .G, range: obG)
+        let b = random(offset: bf, rgb: .B, range: obB)
         
-        self.color = Color(red: r.original / 255, green: g.original / 255, blue: b.original / 255)
-        self.quesColor = Color(red: r.offseted / 255, green: g.offseted / 255, blue: b.offseted / 255)
+        self.normalColorInfo = RGBInfo(red: r.original, green: g.original, blue: b.original)
+        self.quesColorInfo = RGBInfo(red: r.offseted, green: g.offseted, blue: b.offseted)
+        
+        if let color = self.normalColorInfo?.color {
+            self.color = color
+        }
+        
+        if let color = self.quesColorInfo?.color {
+            self.quesColor = color
+        }
         
         self.posx = Int.random(in: 0..<columns)
         self.posy = Int.random(in: 0..<rows)
@@ -198,6 +219,7 @@ class ViewModel: ObservableObject {
         self.selectedX = nil
         self.selectedY = nil
         self.checkRes = .checking
+        
     }
     
     func tap(at point: CGPoint) {
@@ -300,7 +322,7 @@ class ViewModel: ObservableObject {
         }
         
         if let selectedOffsets = configs["selectedOffsets"] as? [String] {
-            self.selectedOffsets = Set(selectedOffsets.compactMap { RGB(rawValue: $0) })
+            self.selectedOffsets = Set(selectedOffsets.compactMap { RGBComponent(rawValue: $0) })
         }
         
         if let rows = configs["rows"] as? Int {

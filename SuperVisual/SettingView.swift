@@ -27,17 +27,37 @@ struct SettingView: View {
                         makeRow(.R, value: $tmpModel.rf)
                         makeRow(.G, value: $tmpModel.gf)
                         makeRow(.B, value: $tmpModel.bf)
+                        
+                        HStack {
+                            Text("When generating random colors, a random offset of 0–20 is applied to one or more RGB channels to create unique color effects.")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            
+                            Spacer()
+                        }
                     }
                     
                     GroupBox("RGB Range") {
                         SliderRow(.R, value: tmpModel.obR, viewModel: tmpModel)
                         SliderRow(.G, value: tmpModel.obG, viewModel: tmpModel)
                         SliderRow(.B, value: tmpModel.obB, viewModel: tmpModel)
+                        
+                        Text("The value range of the RGB channels is used for generating random colors, with each channel ranging from 0 to 255.")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
                     }
                     
                     GroupBox("Grid") {
                         makeRow("Rows", value: $tmpModel.rows)
                         makeRow("Columns", value: $tmpModel.columns)
+                        
+                        HStack {
+                            Text("The number of rows and columns in the grid, the value range is 4~10")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            
+                            Spacer()
+                        }
                     }
                     
                     GroupBox {
@@ -45,6 +65,14 @@ struct SettingView: View {
                             Text("Auto Next")
                             Spacer()
                             Toggle("", isOn: $viewModel.autoNext).labelsHidden()
+                        }
+                        
+                        HStack {
+                            Text("Automatically switch to the next question after answering")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                            
+                            Spacer()
                         }
                     }
                     
@@ -69,7 +97,7 @@ struct SettingView: View {
     }
     
     @ViewBuilder
-    func makeRow(_ rgb: RGB, value: Binding<Int>) -> some View {
+    func makeRow(_ rgb: RGBComponent, value: Binding<Int>) -> some View {
         HStack {
             let isChecked = tmpModel.selectedOffsets.contains(rgb)
             
@@ -115,13 +143,13 @@ struct SettingView: View {
 }
 
 private struct SliderRow: View {
-    let rgb: RGB
+    let rgb: RGBComponent
     
     @ObservedObject var value: ObservedRange
     
     @ObservedObject var viewModel: BaseModel
     
-    init(_ rgb: RGB, value: ObservedRange, viewModel: BaseModel) {
+    init(_ rgb: RGBComponent, value: ObservedRange, viewModel: BaseModel) {
         self.rgb = rgb
         self.value = value
         self.viewModel = viewModel

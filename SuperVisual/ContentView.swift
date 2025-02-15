@@ -10,7 +10,8 @@ import SwiftUI
 let spaceWidth: Double = 1
 
 struct ContentView: View {
-    @State var showSetting: Bool = false
+    @State var showSetting = false
+    @State var showInfo = false
     @ObservedObject var viewModel = ViewModel()
     
     var body: some View {
@@ -40,11 +41,12 @@ struct ContentView: View {
                         let selected: Bool = row == viewModel.selectedY && col == viewModel.selectedX
 
                         if selected {
-                            if viewModel.checkRes != .checking {
-                                context.draw(Text("✅"), in: rect)
-                            } else {
-                                context.draw(Text("❌"), in: rect)
-                            }
+                            let image = Image(systemName: viewModel.checkRes != .checking ? "checkmark" : "xmark")
+                            
+                            context.draw(image, at: CGPoint(
+                                x: rect.origin.x + length / 2,
+                                y: rect.origin.y + length / 2
+                            ))
                         }
                     }
                 }
@@ -61,55 +63,50 @@ struct ContentView: View {
             
             HStack {
                 Spacer()
-                    
-                Button {
-                    viewModel.general()
-                } label: {
-                    Text("Next")
-                }
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 44)
-                .background(.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-
-                Spacer()
                 
-                Button {
+                ActionButton(title: "Check") {
                     viewModel.showAnswer()
-                } label: {
-                    Text("Check")
-                }
-                .foregroundStyle(viewModel.checkRes != .checking ? .white.opacity(0.6) : .white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 44)
-                .background(viewModel.checkRes != .checking ? .blue.opacity(0.6) : .blue)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
-                .disabled(viewModel.checkRes != .checking)
+                }.disabled(viewModel.checkRes != .checking)
                 
                 Spacer()
                 
-                Button {
-                    showSetting = true
-                } label: {
-                    Text("Setting")
+                ActionButton(title: "Help") {
+                    showInfo = true
                 }
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 44)
-                .background(.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
                 
                 Spacer()
             }
             .frame(maxWidth: .infinity)
-            .frame(height: 60)
+            
+            HStack {
+                Spacer()
+                
+                ActionButton(title: "Next") {
+                    viewModel.general()
+                }
+                
+                Spacer()
+                
+                ActionButton(title: "Setting") {
+                    showSetting = true
+                }
+                
+                Spacer()
+            }
+            .frame(maxWidth: .infinity)
         }
         .padding()
         .navigationTitle("Super Visual")
         .navigationBarTitleDisplayMode(.inline)
         .popover(isPresented: $showSetting) {
             SettingView(viewModel: viewModel)
+        }
+        .popover(isPresented: $showInfo) {
+            InfoView(
+                normalColorInfo: viewModel.normalColorInfo,
+                quesColorInfo: viewModel.quesColorInfo
+            )
+            .presentationDetents([.medium, .large])
         }
     }
 }
