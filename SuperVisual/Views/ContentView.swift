@@ -46,7 +46,7 @@ struct ContentView: View {
             )
             .presentationDetents([.medium, .large])
         }
-        .onChange(of: languageManager.locale) { oldValue, newValue in
+        .onChange(of: languageManager.locale) { _, _ in
             titleValue = languageManager.language.appName
         }
         .onAppear {

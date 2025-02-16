@@ -77,7 +77,7 @@ struct SettingView: View {
                     }
                 }
             }
-            .onChange(of: languageManager.locale) { oldValue, newValue in
+            .onChange(of: languageManager.locale) { _, _ in
                 titleValue = languageManager.language.settingName
             }
             .onAppear {
