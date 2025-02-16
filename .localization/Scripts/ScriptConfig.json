@@ -1,0 +1,13 @@
+{
+  "custom" : [
+
+  ],
+  "system" : {
+    "batchTranslate" : false,
+    "constGenerator" : true,
+    "editingValidation" : false,
+    "importStrings" : false,
+    "keyGenerator" : false,
+    "translator" : false
+  }
+}

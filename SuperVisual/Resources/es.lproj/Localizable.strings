@@ -1,0 +1,88 @@
+
+// --------------------------------------------------
+// --------------------------------------------------
+// MARK: - Default
+// --------------------------------------------------
+// --------------------------------------------------
+
+// RGB偏移
+"com.auu.RGBOffset" = "Desplazamiento RGB";
+
+// 在生成随机颜色时，会对一个或多个 RGB 通道应用 0–20 的随机偏移，以创建独特的颜色效果。
+"com.auu.RGBOffset.tips" = "Al generar colores aleatorios, se aplica un desplazamiento aleatorio de 0 a 20 a uno o más canales RGB para crear efectos de color únicos.";
+
+// RGB范围
+"com.auu.RGBRange" = "Rango RGB";
+
+// RGB 各通道的数值范围用于生成随机颜色，每个通道的范围为 0 到 255。
+"com.auu.RGBRange.tips" = "El rango de valores de los canales RGB se utiliza para generar colores aleatorios, con cada canal en un rango de 0 a 255.";
+
+// 自动下一个
+"com.auu.autoNext" = "Siguiente automático";
+
+// 回答后自动切换到下一个问题。
+"com.auu.autoNext.tips" = "Cambiar automáticamente a la siguiente pregunta después de responder.";
+
+// 蓝
+"com.auu.blue" = "Azul";
+
+// 检查
+"com.auu.check" = "Comprobar";
+
+// 增加对比度是指在色值达到一定范围后，调整背景色，以增强色块与背景的对比度，从而提升辨识度。具体计算方法如下：累加 RGB 各通道的数值总和，并进行判断——如果总和小于 200，则背景色设为白色；如果大于 565，则背景色设为黑色；否则，背景色将根据系统的深色或浅色模式自动适配。
+"com.auu.contrastTips" = "Aumentar el contraste se refiere a ajustar el color de fondo cuando el valor del color alcanza un cierto rango para mejorar el contraste entre el bloque de color y el fondo, mejorando así la distinguibilidad. El método de cálculo específico es el siguiente: sumar los valores de los canales RGB y hacer un juicio: si el total es menor que 200, el color de fondo se establece en blanco; si es mayor que 565, el color de fondo se establece en negro; de lo contrario, el color de fondo se adapta automáticamente según el modo claro u oscuro del sistema.";
+
+// 当前
+"com.auu.current" = "Actual";
+
+// 绿
+"com.auu.green" = "Verde";
+
+// 网格
+"com.auu.grid" = "Rejilla";
+
+// 网格中的行数和列数，数值范围是 4~10。
+"com.auu.grid.tips" = "El número de filas y columnas en la cuadrícula, el rango de valores es de 4 a 10.";
+
+// 列数
+"com.auu.gridColumns" = "Columnas";
+
+// 行数
+"com.auu.gridRows" = "Filas";
+
+// 帮助
+"com.auu.help" = "Ayuda";
+
+// 增加对比度
+"com.auu.increaseContrast" = "Aumentar el contraste";
+
+// 语言
+"com.auu.language" = "Idioma";
+
+// 超级视觉
+"com.auu.localization.superVisual" = "Super Visual";
+
+// 合并网格
+"com.auu.mergeGrid" = "Unir cuadrícula";
+
+// 在显示答案时，将所有网格合并为一个整体，去除中间的分割线，以便更直观地查看和对比结果。
+"com.auu.mergeGridTips" = "Al mostrar la respuesta, fusiona todas las cuadrículas en una sola entidad y elimina las líneas divisorias entre ellas para una comparación más clara e intuitiva de los resultados.";
+
+// 下一个
+"com.auu.next" = "Siguiente";
+
+// 正常
+"com.auu.normal" = "Normal";
+
+// 红
+"com.auu.red" = "Rojo";
+
+// 保存
+"com.auu.save" = "Guardar";
+
+// 设置
+"com.auu.setting" = "Configuración";
+
+// 特殊
+"com.auu.special" = "Especial";
+

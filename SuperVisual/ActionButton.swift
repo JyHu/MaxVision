@@ -10,7 +10,7 @@ import SwiftUI
 struct ActionButton: View {
     @Environment(\.isEnabled) private var isEnabled
     
-    var title: String
+    var title: LocalizedStringKey
     var action: () -> Void
     
     var body: some View {

@@ -1,0 +1,88 @@
+
+// --------------------------------------------------
+// --------------------------------------------------
+// MARK: - Default
+// --------------------------------------------------
+// --------------------------------------------------
+
+// RGB偏移
+"com.auu.RGBOffset" = "Décalage RGB";
+
+// 在生成随机颜色时，会对一个或多个 RGB 通道应用 0–20 的随机偏移，以创建独特的颜色效果。
+"com.auu.RGBOffset.tips" = "Lors de la génération de couleurs aléatoires, un décalage aléatoire de 0 à 20 est appliqué à un ou plusieurs canaux RVB pour créer des effets de couleur uniques.";
+
+// RGB范围
+"com.auu.RGBRange" = "Plage RGB";
+
+// RGB 各通道的数值范围用于生成随机颜色，每个通道的范围为 0 到 255。
+"com.auu.RGBRange.tips" = "La plage de valeurs des canaux RVB est utilisée pour générer des couleurs aléatoires, chaque canal variant de 0 à 255.";
+
+// 自动下一个
+"com.auu.autoNext" = "Suivant automatique";
+
+// 回答后自动切换到下一个问题。
+"com.auu.autoNext.tips" = "Passer automatiquement à la question suivante après avoir répondu.";
+
+// 蓝
+"com.auu.blue" = "Bleu";
+
+// 检查
+"com.auu.check" = "Vérifier";
+
+// 增加对比度是指在色值达到一定范围后，调整背景色，以增强色块与背景的对比度，从而提升辨识度。具体计算方法如下：累加 RGB 各通道的数值总和，并进行判断——如果总和小于 200，则背景色设为白色；如果大于 565，则背景色设为黑色；否则，背景色将根据系统的深色或浅色模式自动适配。
+"com.auu.contrastTips" = "L'augmentation du contraste consiste à ajuster la couleur de fond lorsque la valeur de la couleur atteint une certaine plage pour améliorer le contraste entre le bloc de couleur et le fond, améliorant ainsi la distingabilité. La méthode de calcul spécifique est la suivante : additionner les valeurs des canaux RGB et prendre une décision — si le total est inférieur à 200, la couleur de fond est définie sur blanc ; si elle est supérieure à 565, la couleur de fond est définie sur noir ; sinon, la couleur de fond s'adapte automatiquement en fonction du mode clair ou sombre du système.";
+
+// 当前
+"com.auu.current" = "Actuel";
+
+// 绿
+"com.auu.green" = "Vert";
+
+// 网格
+"com.auu.grid" = "Grille";
+
+// 网格中的行数和列数，数值范围是 4~10。
+"com.auu.grid.tips" = "Le nombre de lignes et de colonnes dans la grille, la plage de valeurs est de 4 à 10.";
+
+// 列数
+"com.auu.gridColumns" = "Colonnes";
+
+// 行数
+"com.auu.gridRows" = "Lignes";
+
+// 帮助
+"com.auu.help" = "Aide";
+
+// 增加对比度
+"com.auu.increaseContrast" = "Augmenter le contraste";
+
+// 语言
+"com.auu.language" = "Langue";
+
+// 超级视觉
+"com.auu.localization.superVisual" = "Super Visuel";
+
+// 合并网格
+"com.auu.mergeGrid" = "Fusionner la grille";
+
+// 在显示答案时，将所有网格合并为一个整体，去除中间的分割线，以便更直观地查看和对比结果。
+"com.auu.mergeGridTips" = "Lors de l'affichage de la réponse, fusionnez toutes les grilles en une seule entité et supprimez les lignes de séparation pour une comparaison plus claire et intuitive des résultats.";
+
+// 下一个
+"com.auu.next" = "Suivant";
+
+// 正常
+"com.auu.normal" = "Normal";
+
+// 红
+"com.auu.red" = "Rouge";
+
+// 保存
+"com.auu.save" = "Enregistrer";
+
+// 设置
+"com.auu.setting" = "Paramètre";
+
+// 特殊
+"com.auu.special" = "Spécial";
+

@@ -1,0 +1,88 @@
+
+// --------------------------------------------------
+// --------------------------------------------------
+// MARK: - Default
+// --------------------------------------------------
+// --------------------------------------------------
+
+// RGB偏移
+"com.auu.RGBOffset" = "RGB-Verschiebung";
+
+// 在生成随机颜色时，会对一个或多个 RGB 通道应用 0–20 的随机偏移，以创建独特的颜色效果。
+"com.auu.RGBOffset.tips" = "Beim Generieren zufälliger Farben wird ein zufälliger Versatz von 0–20 auf einen oder mehrere RGB-Kanäle angewendet, um einzigartige Farbeffekte zu erzeugen.";
+
+// RGB范围
+"com.auu.RGBRange" = "RGB-Bereich";
+
+// RGB 各通道的数值范围用于生成随机颜色，每个通道的范围为 0 到 255。
+"com.auu.RGBRange.tips" = "Der Wertebereich der RGB-Kanäle wird zur Erzeugung zufälliger Farben verwendet, wobei jeder Kanal von 0 bis 255 reicht.";
+
+// 自动下一个
+"com.auu.autoNext" = "Auto Next";
+
+// 回答后自动切换到下一个问题。
+"com.auu.autoNext.tips" = "Automatisch zur nächsten Frage wechseln, nachdem die Antwort gegeben wurde.";
+
+// 蓝
+"com.auu.blue" = "Blau";
+
+// 检查
+"com.auu.check" = "Überprüfen";
+
+// 增加对比度是指在色值达到一定范围后，调整背景色，以增强色块与背景的对比度，从而提升辨识度。具体计算方法如下：累加 RGB 各通道的数值总和，并进行判断——如果总和小于 200，则背景色设为白色；如果大于 565，则背景色设为黑色；否则，背景色将根据系统的深色或浅色模式自动适配。
+"com.auu.contrastTips" = "Die Erhöhung des Kontrasts bezieht sich auf die Anpassung der Hintergrundfarbe, wenn der Farbwert einen bestimmten Bereich erreicht, um den Kontrast zwischen dem Farbfeld und dem Hintergrund zu verstärken und die Unterscheidbarkeit zu verbessern. Die spezifische Berechnungsmethode lautet wie folgt: Summiere die Werte der RGB-Kanäle und treffe eine Entscheidung – wenn die Summe kleiner als 200 ist, wird die Hintergrundfarbe auf Weiß gesetzt; wenn sie größer als 565 ist, wird die Hintergrundfarbe auf Schwarz gesetzt; andernfalls passt sich die Hintergrundfarbe automatisch an den hellen oder dunklen Modus des Systems an.";
+
+// 当前
+"com.auu.current" = "Aktuell";
+
+// 绿
+"com.auu.green" = "Grün";
+
+// 网格
+"com.auu.grid" = "Gitter";
+
+// 网格中的行数和列数，数值范围是 4~10。
+"com.auu.grid.tips" = "Die Anzahl der Reihen und Spalten im Raster, der Wertebereich ist 4–10.";
+
+// 列数
+"com.auu.gridColumns" = "Spalten";
+
+// 行数
+"com.auu.gridRows" = "Reihen";
+
+// 帮助
+"com.auu.help" = "Hilfe";
+
+// 增加对比度
+"com.auu.increaseContrast" = "Kontrast erhöhen";
+
+// 语言
+"com.auu.language" = "Sprache";
+
+// 超级视觉
+"com.auu.localization.superVisual" = "Super Visuell";
+
+// 合并网格
+"com.auu.mergeGrid" = "Raster zusammenführen";
+
+// 在显示答案时，将所有网格合并为一个整体，去除中间的分割线，以便更直观地查看和对比结果。
+"com.auu.mergeGridTips" = "Beim Anzeigen der Antwort alle Raster zu einer Einheit zusammenführen und die Trennlinien dazwischen entfernen, um die Ergebnisse klarer und intuitiver vergleichen zu können.";
+
+// 下一个
+"com.auu.next" = "Weiter";
+
+// 正常
+"com.auu.normal" = "Normal";
+
+// 红
+"com.auu.red" = "Rot";
+
+// 保存
+"com.auu.save" = "Speichern";
+
+// 设置
+"com.auu.setting" = "Einstellung";
+
+// 特殊
+"com.auu.special" = "Spezial";
+

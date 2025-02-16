@@ -11,11 +11,13 @@ struct InfoView: View {
     let normalColorInfo: RGBInfo?
     let quesColorInfo: RGBInfo?
     
+    @ObservedObject var viewModel: ViewModel
+        
     var body: some View {
         NavigationStack {
             makeContent()
-            .navigationTitle("Help")
-            .navigationBarTitleDisplayMode(.inline)
+                .navigationTitle(lHelpNameKey)
+                .navigationBarTitleDisplayMode(.inline)
         }
     }
     
@@ -23,59 +25,100 @@ struct InfoView: View {
     func makeContent() -> some View {
         if let normalColorInfo = normalColorInfo, let quesColorInfo = quesColorInfo {
             ScrollView {
-                Grid(horizontalSpacing: 0) {
-                    GridRow {
-                        HStack {
-                            Spacer()
+                VStack {
+                    GroupBox(lCurrentNameKey) {
+                        Grid(horizontalSpacing: 0) {
+                            GridRow {
+                                HStack {
+                                    Spacer()
+                                    
+                                    Text(lNormalNameKey)
+                                }
+                                .padding(.trailing, 8)
+                                
+                                HStack {
+                                    Text(lSpecialNameKey)
+                                    
+                                    Spacer()
+                                }
+                                .padding(.leading, 8)
+                            }
                             
-                            Text("Normal")
+                            GridRow {
+                                HStack {
+                                    Spacer()
+                                    
+                                    Text("\(normalColorInfo.red), \(normalColorInfo.green), \(normalColorInfo.blue)")
+                                }
+                                .padding(.trailing, 8)
+                                
+                                HStack {
+                                    Text("\(quesColorInfo.red), \(quesColorInfo.green), \(quesColorInfo.blue)")
+                                    
+                                    Spacer()
+                                }
+                                .padding(.leading, 8)
+                            }
+                            .fontDesign(.monospaced)
                         }
-                        .padding(.trailing, 8)
                         
-                        HStack {
-                            Text("Special")
+                        HStack(spacing: 0) {
+                            Rectangle()
+                                .fill(normalColorInfo.color)
+                                .frame(height: 120)
+                                .frame(maxWidth: .infinity)
                             
-                            Spacer()
+                            Rectangle()
+                                .fill(quesColorInfo.color)
+                                .frame(height: 120)
+                                .frame(maxWidth: .infinity)
                         }
-                        .padding(.leading, 8)
+                        .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                     
-                    GridRow {
-                        HStack {
-                            Spacer()
-                            
-                            Text("\(normalColorInfo.red), \(normalColorInfo.green), \(normalColorInfo.blue)")
-                        }
-                        .padding(.trailing, 8)
-                        
-                        HStack {
-                            Text("\(quesColorInfo.red), \(quesColorInfo.green), \(quesColorInfo.blue)")
-                            
-                            Spacer()
-                        }
-                        .padding(.leading, 8)
-                    }
-                    .fontDesign(.monospaced)
+                    Spacer().frame(height: 20)
                     
+                    makeToggleBox(lAutoNextNameKey, value: $viewModel.autoNext, tips: lAutoNextTipsNameKey)
                     
-                    GridRow {
-                        Rectangle()
-                            .fill(normalColorInfo.color)
-                            .frame(height: 120)
-                            .frame(maxWidth: .infinity)
+                    /// 在显示答案时，将所有网格合并为一个整体，去除中间的分割线，以便更直观地查看和对比结果。
+                    makeToggleBox(lMergeGridNameKey, value: $viewModel.megeGrid, tips: lMergeGridTipsNameKey)
+                    
+                    /// 增加对比度是指在色值达到一定范围后，调整背景色，以增强色块与背景的对比度，从而提升辨识度。具体计算方法如下：累加 RGB 各通道的数值总和，并进行判断——如果总和小于 200，则背景色设为白色；如果大于 565，则背景色设为黑色；否则，背景色将根据系统的深色或浅色模式自动适配。
+                    makeToggleBox(lIncreaseContrastNameKey, value: $viewModel.increaseContrast, tips: lContrastTipsNameKey)
+                    
+                    HStack {
                         
-                        Rectangle()
-                            .fill(quesColorInfo.color)
-                            .frame(height: 120)
-                            .frame(maxWidth: .infinity)
                     }
                 }
+                .padding(.horizontal, 18)
             }
         } else {
             VStack {
                 Text("No Info")
                     .font(.title)
                     .foregroundColor(.secondary)
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func makeToggleBox(_ title: LocalizedStringKey, value: Binding<Bool>, tips: LocalizedStringKey) -> some View {
+        GroupBox {
+            HStack {
+                Text(title)
+                
+                Spacer()
+                
+                Toggle("", isOn: value).labelsHidden()
+            }
+            
+            HStack {
+                /// 在显示答案时，将所有网格合并为一个整体，去除中间的分割线，以便更直观地查看和对比结果。
+                Text(tips)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                
+                Spacer()
             }
         }
     }

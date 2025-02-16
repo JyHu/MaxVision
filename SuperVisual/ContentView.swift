@@ -30,16 +30,17 @@ struct ContentView: View {
             }
         }
         .padding()
-        .background(viewModel.increaseContrast ? (viewModel.bgType?.color ?? .clear) : .clear)
-        .navigationTitle("Super Visual")
+        .navigationTitle(lSuperVisualNameKey)
         .navigationBarTitleDisplayMode(.inline)
+        .preferredColorScheme(viewModel.increaseContrast ? viewModel.bgType?.colorScheme : nil)
         .popover(isPresented: $showSetting) {
             SettingView(viewModel: viewModel)
         }
         .popover(isPresented: $showInfo) {
             InfoView(
                 normalColorInfo: viewModel.normalColorInfo,
-                quesColorInfo: viewModel.quesColorInfo
+                quesColorInfo: viewModel.quesColorInfo,
+                viewModel: viewModel
             )
             .presentationDetents([.medium, .large])
         }
@@ -132,40 +133,40 @@ struct ContentView: View {
     func makeActionView(isHorizontal: Bool) -> some View {
         if isHorizontal {
             VStack {
-                ActionButton(title: "Check") {
+                ActionButton(title: lCheckNameKey) {
                     viewModel.showAnswer()
                 }.disabled(viewModel.checkRes != .checking)
                 
-                ActionButton(title: "Help") {
+                ActionButton(title: lHelpNameKey) {
                     showInfo = true
                 }
                 
-                ActionButton(title: "Next") {
+                ActionButton(title: lNextNameKey) {
                     viewModel.general()
                 }
                 
-                ActionButton(title: "Setting") {
+                ActionButton(title: lSettingNameKey) {
                     showSetting = true
                 }
             }
         } else {
             Grid(horizontalSpacing: 10, verticalSpacing: 10) {
                 GridRow {
-                    ActionButton(title: "Check") {
+                    ActionButton(title: lCheckNameKey) {
                         viewModel.showAnswer()
                     }.disabled(viewModel.checkRes != .checking)
                     
-                    ActionButton(title: "Help") {
+                    ActionButton(title: lHelpNameKey) {
                         showInfo = true
                     }
                 }
                 
                 GridRow {
-                    ActionButton(title: "Next") {
+                    ActionButton(title: lNextNameKey) {
                         viewModel.general()
                     }
                     
-                    ActionButton(title: "Setting") {
+                    ActionButton(title: lSettingNameKey) {
                         showSetting = true
                     }
                 }

@@ -1,0 +1,88 @@
+
+// --------------------------------------------------
+// --------------------------------------------------
+// MARK: - Default
+// --------------------------------------------------
+// --------------------------------------------------
+
+// RGB偏移
+"com.auu.RGBOffset" = "Deslocamento RGB";
+
+// 在生成随机颜色时，会对一个或多个 RGB 通道应用 0–20 的随机偏移，以创建独特的颜色效果。
+"com.auu.RGBOffset.tips" = "Ao gerar cores aleatórias, um deslocamento aleatório de 0 a 20 é aplicado a um ou mais canais RGB para criar efeitos de cores exclusivos.";
+
+// RGB范围
+"com.auu.RGBRange" = "Faixa RGB";
+
+// RGB 各通道的数值范围用于生成随机颜色，每个通道的范围为 0 到 255。
+"com.auu.RGBRange.tips" = "A faixa de valores dos canais RGB é usada para gerar cores aleatórias, com cada canal variando de 0 a 255.";
+
+// 自动下一个
+"com.auu.autoNext" = "Próximo automático";
+
+// 回答后自动切换到下一个问题。
+"com.auu.autoNext.tips" = "Mudar automaticamente para a próxima pergunta após responder.";
+
+// 蓝
+"com.auu.blue" = "Azul";
+
+// 检查
+"com.auu.check" = "Verificar";
+
+// 增加对比度是指在色值达到一定范围后，调整背景色，以增强色块与背景的对比度，从而提升辨识度。具体计算方法如下：累加 RGB 各通道的数值总和，并进行判断——如果总和小于 200，则背景色设为白色；如果大于 565，则背景色设为黑色；否则，背景色将根据系统的深色或浅色模式自动适配。
+"com.auu.contrastTips" = "Aumentar o contraste refere-se ao ajuste da cor de fundo quando o valor da cor atinge um determinado intervalo para melhorar o contraste entre o bloco de cor e o fundo, melhorando assim a distinguibilidade. O método de cálculo específico é o seguinte: some os valores dos canais RGB e faça um julgamento—se o total for inferior a 200, a cor de fundo é definida como branca; se for superior a 565, a cor de fundo é definida como preta; caso contrário, a cor de fundo se adapta automaticamente com base no modo claro ou escuro do sistema.";
+
+// 当前
+"com.auu.current" = "Atual";
+
+// 绿
+"com.auu.green" = "Verde";
+
+// 网格
+"com.auu.grid" = "Grade";
+
+// 网格中的行数和列数，数值范围是 4~10。
+"com.auu.grid.tips" = "O número de linhas e colunas na grade, o intervalo de valores é de 4 a 10.";
+
+// 列数
+"com.auu.gridColumns" = "Colunas";
+
+// 行数
+"com.auu.gridRows" = "Linhas";
+
+// 帮助
+"com.auu.help" = "Ajuda";
+
+// 增加对比度
+"com.auu.increaseContrast" = "Aumentar o contraste";
+
+// 语言
+"com.auu.language" = "Idioma";
+
+// 超级视觉
+"com.auu.localization.superVisual" = "Super Visual";
+
+// 合并网格
+"com.auu.mergeGrid" = "Mesclar grade";
+
+// 在显示答案时，将所有网格合并为一个整体，去除中间的分割线，以便更直观地查看和对比结果。
+"com.auu.mergeGridTips" = "Ao exibir a resposta, mescle todas as grades em uma única entidade e remova as linhas divisórias entre elas para uma comparação mais clara e intuitiva dos resultados.";
+
+// 下一个
+"com.auu.next" = "Próximo";
+
+// 正常
+"com.auu.normal" = "Normal";
+
+// 红
+"com.auu.red" = "Vermelho";
+
+// 保存
+"com.auu.save" = "Salvar";
+
+// 设置
+"com.auu.setting" = "Configuração";
+
+// 特殊
+"com.auu.special" = "Especial";
+

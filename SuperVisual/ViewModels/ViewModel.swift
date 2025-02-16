@@ -14,11 +14,11 @@ enum RGBComponent: String, Identifiable, CaseIterable {
     
     var id: String { rawValue }
     
-    var name: String {
+    var name: LocalizedStringKey {
         switch self {
-        case .R: "Red"
-        case .G: "Green"
-        case .B: "Blue"
+        case .R: lRedNameKey
+        case .G: lGreenNameKey
+        case .B: lBlueNameKey
         }
     }
 }
@@ -52,6 +52,13 @@ enum BGType {
         switch self {
             case .light: return Color.white
             case .dark: return Color.black
+        }
+    }
+    
+    var colorScheme: ColorScheme {
+        switch self {
+        case .light: return .light
+        case .dark: return .dark
         }
     }
 }
@@ -135,6 +142,8 @@ class ViewModel: ObservableObject {
             UserDefaults.standard.synchronize()
         }
     }
+    
+    @Published var language: Language = .english
     
     /// --------------------------
     /// 计算数据
