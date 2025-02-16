@@ -201,10 +201,10 @@ class ViewModel: ObservableObject {
         self.nextAction?.cancel()
         self.nextAction = nil
         
-        func random(offset: Int, rgb: RGBComponent, range: ObservedRange) -> (original: Int, offseted: Int) {
+        func random(offset: Int, component: RGBComponent, range: ObservedRange) -> (original: Int, offseted: Int) {
             let val = Int.random(in: range.minV...range.maxV)
             
-            if offset == 0 || !selectedOffsets.contains(rgb) {
+            if offset == 0 || !selectedOffsets.contains(component) {
                 return (val, val)
             }
             
@@ -223,9 +223,9 @@ class ViewModel: ObservableObject {
             }
         }
         
-        let r = random(offset: rf, rgb: .R, range: obR)
-        let g = random(offset: gf, rgb: .G, range: obG)
-        let b = random(offset: bf, rgb: .B, range: obB)
+        let r = random(offset: rf, component: .R, range: obR)
+        let g = random(offset: gf, component: .G, range: obG)
+        let b = random(offset: bf, component: .B, range: obB)
         
         self.normalColorInfo = RGBInfo(red: r.original, green: g.original, blue: b.original)
         self.quesColorInfo = RGBInfo(red: r.offseted, green: g.offseted, blue: b.offseted)

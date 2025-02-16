@@ -23,21 +23,21 @@ struct SettingView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 10) {
-                    makeConfigBox("RGB Offset", tips: "When generating random colors, a random offset of 0–20 is applied to one or more RGB channels to create unique color effects.") {
-                        makeRow(.R, value: $tmpModel.rf)
-                        makeRow(.G, value: $tmpModel.gf)
-                        makeRow(.B, value: $tmpModel.bf)
-                    }
-                    
                     makeConfigBox("RGB Range", tips: "The value range of the RGB channels is used for generating random colors, with each channel ranging from 0 to 255.") {
-                        SliderRow(.R, value: tmpModel.obR, viewModel: tmpModel)
+                        SliderRow(.R, value: tmpModel.obR, viewModel: tmpModel).padding(.top, 10)
                         SliderRow(.G, value: tmpModel.obG, viewModel: tmpModel)
                         SliderRow(.B, value: tmpModel.obB, viewModel: tmpModel)
                     }
                     
+                    makeConfigBox("RGB Offset", tips: "When generating random colors, a random offset of 0–20 is applied to one or more RGB channels to create unique color effects.") {
+                        makeRGBRow(.R, value: $tmpModel.rf)
+                        makeRGBRow(.G, value: $tmpModel.gf)
+                        makeRGBRow(.B, value: $tmpModel.bf)
+                    }
+                    
                     makeConfigBox("Grid", tips: "The number of rows and columns in the grid, the value range is 4~10") {
-                        makeRow("Rows", value: $tmpModel.rows)
-                        makeRow("Columns", value: $tmpModel.columns)
+                        makeGridRow("Rows", value: $tmpModel.rows)
+                        makeGridRow("Columns", value: $tmpModel.columns)
                     }
                     
                     
@@ -49,6 +49,9 @@ struct SettingView: View {
                     
                     /// 增加对比度是指在色值达到一定范围后，调整背景色，以增强色块与背景的对比度，从而提升辨识度。具体计算方法如下：累加 RGB 各通道的数值总和，并进行判断——如果总和小于 200，则背景色设为白色；如果大于 565，则背景色设为黑色；否则，背景色将根据系统的深色或浅色模式自动适配。
                     makeToggleBox("Increase the contrast", value: $viewModel.increaseContrast, tips: "Increasing contrast refers to adjusting the background color when the color value reaches a certain range to enhance the contrast between the color block and the background, thereby improving distinguishability. The specific calculation method is as follows: sum the values of the RGB channels and make a judgment—if the total is less than 200, the background color is set to white; if it is greater than 565, the background color is set to black; otherwise, the background color adapts automatically based on the system’s light or dark mode.")
+                    
+                    /// 撑起底部的距离
+                    VStack { }.frame(height: 30)
                 }
                 .padding(.horizontal, 18)
             }
@@ -110,60 +113,58 @@ struct SettingView: View {
     }
     
     @ViewBuilder
-    func makeRow(_ rgb: RGBComponent, value: Binding<Int>) -> some View {
+    func makeRGBRow(_ component: RGBComponent, value: Binding<Int>) -> some View {
         HStack {
-            let isChecked = tmpModel.selectedOffsets.contains(rgb)
+            let isChecked = tmpModel.selectedOffsets.contains(component)
             
             Button {
                 if isChecked {
                     if tmpModel.selectedOffsets.count > 1 {
-                        tmpModel.selectedOffsets.remove(rgb)
+                        tmpModel.selectedOffsets.remove(component)
                     }
                 } else {
-                    tmpModel.selectedOffsets.insert(rgb)
+                    tmpModel.selectedOffsets.insert(component)
                 }
             } label: {
                 Image(systemName: isChecked ? "checkmark.circle" : "circle")
             }
             .frame(width: 30)
             
-            Text(rgb.name)
+            Text(component.name)
             
             Spacer()
             
-            Stepper("", value: value, in: 0...20, step: 1).labelsHidden()
-            
             Text("\(value.wrappedValue)")
-                .frame(width: 60)
                 .fontDesign(.monospaced)
+            
+            Stepper("", value: value, in: 0...20, step: 1).labelsHidden()
         }
     }
     
     @ViewBuilder
-    func makeRow(_ title: String, value: Binding<Int>) -> some View {
+    func makeGridRow(_ title: String, value: Binding<Int>) -> some View {
         HStack {
             Text(title)
             
             Spacer()
             
-            Stepper("", value: value, in: 4...10, step: 1)
-            
             Text("\(value.wrappedValue)")
-                .frame(width: 60)
                 .fontDesign(.monospaced)
+
+            Stepper("", value: value, in: 4...10, step: 1).labelsHidden()
         }
     }
 }
 
 private struct SliderRow: View {
-    let rgb: RGBComponent
+    let component: RGBComponent
     
     @ObservedObject var value: ObservedRange
     
     @ObservedObject var viewModel: BaseModel
     
-    init(_ rgb: RGBComponent, value: ObservedRange, viewModel: BaseModel) {
-        self.rgb = rgb
+    init(_ component: RGBComponent, value: ObservedRange, viewModel: BaseModel) {
+        self.component = component
         self.value = value
         self.viewModel = viewModel
     }
@@ -171,7 +172,7 @@ private struct SliderRow: View {
     var body: some View {
         VStack {
             HStack {
-                Text(rgb.name)
+                Text(component.name)
                 
                 Spacer()
                 
