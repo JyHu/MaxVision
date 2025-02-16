@@ -7,103 +7,6 @@
 
 import SwiftUI
 
-enum RGBComponent: String, Identifiable, CaseIterable {
-    case R
-    case G
-    case B
-    
-    var id: String { rawValue }
-    
-    var name: LocalizedStringKey {
-        switch self {
-        case .R: lRedNameKey
-        case .G: lGreenNameKey
-        case .B: lBlueNameKey
-        }
-    }
-}
-
-struct RGBInfo {
-    let red: Int
-    let green: Int
-    let blue: Int
-    
-    var color: Color {
-        Color(red: Double(red) / 255, green: Double(green) / 255, blue: Double(blue) / 255)
-    }
-}
-
-enum CheckResult: String, Identifiable {
-    /// 在选择的过程中的状态
-    case checking
-    /// 选择正确的状态
-    case right
-    /// 结束选择的状态，比如查看答案
-    case finished
-    
-    var id: String { rawValue }
-}
-
-enum BGType {
-    case light
-    case dark
-    
-    var color: Color {
-        switch self {
-            case .light: return Color.white
-            case .dark: return Color.black
-        }
-    }
-    
-    var colorScheme: ColorScheme {
-        switch self {
-        case .light: return .light
-        case .dark: return .dark
-        }
-    }
-}
-
-class ObservedRange: ObservableObject, Equatable {
-    static func == (lhs: ObservedRange, rhs: ObservedRange) -> Bool {
-        lhs.minV == rhs.minV && lhs.maxV == rhs.maxV
-    }
-    
-    @Published var minV: Int = 0
-    @Published var maxV: Int = 255
-}
-
-class BaseModel: ObservableObject {
-    @Published var rf: Int = 10
-    @Published var gf: Int = 10
-    @Published var bf: Int = 10
-    
-    @Published var obR = ObservedRange()
-    @Published var obG = ObservedRange()
-    @Published var obB = ObservedRange()
-    
-    @Published var selectedOffsets: Set<RGBComponent> = [.R, .G, .B]
-    
-    @Published var rows: Int = 5
-    @Published var columns: Int = 5
-            
-    init() { }
-    
-    init(model: ViewModel) {
-        self.rf = model.rf
-        self.gf = model.gf
-        self.bf = model.bf
-        
-        self.obR = model.obR
-        self.obG = model.obG
-        self.obB = model.obB
-        
-        self.selectedOffsets = model.selectedOffsets
-        
-        self.rows = model.rows
-        self.columns = model.columns
-    }
-}
-
 class ViewModel: ObservableObject {
     
     /// ----------------------------------
@@ -122,21 +25,21 @@ class ViewModel: ObservableObject {
     @Published var rows: Int = 5
     @Published var columns: Int = 5
     
-    @Published var autoNext: Bool = false {
+    @Published var autoNext: Bool = true {
         didSet {
             UserDefaults.standard.set(autoNext, forKey: "com.auu.autoNext")
             UserDefaults.standard.synchronize()
         }
     }
     
-    @Published var megeGrid: Bool = false {
+    @Published var megeGrid: Bool = true {
         didSet {
             UserDefaults.standard.set(megeGrid, forKey: "com.auu.megeGrid")
             UserDefaults.standard.synchronize()
         }
     }
     
-    @Published var increaseContrast: Bool = false {
+    @Published var increaseContrast: Bool = true {
         didSet {
             UserDefaults.standard.set(increaseContrast, forKey: "com.auu.increaseContrast")
             UserDefaults.standard.synchronize()
@@ -174,7 +77,7 @@ class ViewModel: ObservableObject {
         general()
     }
     
-    func merge(from model: BaseModel) {
+    func merge(from model: SettingViewModel) {
         let changed =
             self.rf != model.rf ||
             self.gf != model.gf ||

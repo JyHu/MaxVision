@@ -11,6 +11,8 @@ struct ContentView: View {
     @State var showSetting = false
     @State var showInfo = false
     @ObservedObject var viewModel = ViewModel()
+    @EnvironmentObject var languageManager: LanguageManager
+    @State var titleValue: String = "Super Visual"
     
     var body: some View {
         GeometryReader { proxy in
@@ -30,7 +32,7 @@ struct ContentView: View {
             }
         }
         .padding()
-        .navigationTitle(lSuperVisualNameKey)
+        .navigationTitle(titleValue)
         .navigationBarTitleDisplayMode(.inline)
         .preferredColorScheme(viewModel.increaseContrast ? viewModel.bgType?.colorScheme : nil)
         .popover(isPresented: $showSetting) {
@@ -43,6 +45,12 @@ struct ContentView: View {
                 viewModel: viewModel
             )
             .presentationDetents([.medium, .large])
+        }
+        .onChange(of: languageManager.locale) { oldValue, newValue in
+            titleValue = languageManager.language.appName
+        }
+        .onAppear {
+            titleValue = languageManager.language.appName
         }
     }
     

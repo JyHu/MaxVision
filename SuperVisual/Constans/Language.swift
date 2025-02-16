@@ -40,3 +40,39 @@ enum Language: String, CaseIterable, Identifiable {
         }
     }
 }
+
+extension Language {
+    var settingName: String {
+        switch self {
+        case .simpleChinese: "设置"
+        case .traditionalChinese: "設置"
+        case .english: "Setting"
+        case .spanish: "Configuración"
+        case .french: "Paramètre"
+        case .german: "Einstellung"
+        case .russian: "Настройка"
+        case .japanese: "設定"
+        case .korean: "설정"
+        case .portuguese: "Configuração"
+        case .italian: "Impostazione"
+        case .thai: "การตั้งค่า"
+        }
+    }
+    
+    var appName: String {
+        switch self {
+        case .simpleChinese: "超级视觉"
+        case .traditionalChinese: "超級視覺"
+        case .english: "Super Visual"
+        case .spanish: "Super Visual"
+        case .french: "Super Visuel"
+        case .german: "Super Visuell"
+        case .russian: "Супер Визуальный"
+        case .japanese: "スーパー視覚"
+        case .korean: "슈퍼 비주얼"
+        case .portuguese: "Super Visual"
+        case .italian: "Super Visivo"
+        case .thai: "ซุปเปอร์วิชวล"
+        }
+    }
+}

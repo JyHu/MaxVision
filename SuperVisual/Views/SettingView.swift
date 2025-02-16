@@ -8,16 +8,17 @@
 import SwiftUI
 
 struct SettingView: View {
-    @ObservedObject private var tmpModel: BaseModel
+    @ObservedObject private var tmpModel: SettingViewModel
     
     @ObservedObject private var viewModel: ViewModel
     
     @Environment(\.dismiss) var dismissAction
     
     @EnvironmentObject var languageManager: LanguageManager
+    @State private var titleValue: String = "Setting"
             
     init(viewModel: ViewModel) {
-        self.tmpModel = BaseModel(model: viewModel)
+        self.tmpModel = SettingViewModel(model: viewModel)
         self.viewModel = viewModel
     }
     
@@ -60,7 +61,7 @@ struct SettingView: View {
                 .padding(.horizontal, 18)
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(lSettingNameKey)
+            .navigationTitle(titleValue)
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     Button {
@@ -75,6 +76,12 @@ struct SettingView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                 }
+            }
+            .onChange(of: languageManager.locale) { oldValue, newValue in
+                titleValue = languageManager.language.settingName
+            }
+            .onAppear {
+                titleValue = languageManager.language.settingName
             }
         }
     }
@@ -143,9 +150,9 @@ private struct SliderRow: View {
     
     @ObservedObject var value: ObservedRange
     
-    @ObservedObject var viewModel: BaseModel
+    @ObservedObject var viewModel: SettingViewModel
     
-    init(_ component: RGBComponent, value: ObservedRange, viewModel: BaseModel) {
+    init(_ component: RGBComponent, value: ObservedRange, viewModel: SettingViewModel) {
         self.component = component
         self.value = value
         self.viewModel = viewModel
