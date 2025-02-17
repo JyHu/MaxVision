@@ -8,31 +8,45 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State var showSetting = false
-    @State var showInfo = false
+    @State private var showSetting = false
+    @State private var showInfo = false
     @ObservedObject var viewModel = ViewModel()
-    @EnvironmentObject var languageManager: LanguageManager
-    @State var titleValue: String = "Super Visual"
+    
+    @AppStorage("com.auu.confirmed") private var confirmed: Bool = false
+    @State private var begin: Bool = false
     
     var body: some View {
-        GeometryReader { proxy in
-            if proxy.size.width > proxy.size.height {
-                HStack {
-                    makeCanvasView()
-                    
-                    makeActionView(isHorizontal: true)
-                        .frame(width: 220)
+        VStack {
+            GeometryReader { proxy in
+                /// 横向
+                if proxy.size.width > proxy.size.height {
+                    if !confirmed {
+                        makeFirstUseTips()
+                    } else {
+                        HStack {
+                            makeCanvasView()
+                            
+                            makeActionView(isHorizontal: true)
+                                .frame(width: 220)
+                        }
+                    }
                 }
-            } else {
-                VStack {
-                    makeCanvasView()
-                    
-                    makeActionView(isHorizontal: false)
+                // 纵向
+                else {
+                    if !confirmed {
+                        makeFirstUseTips()
+                    } else {
+                        VStack {
+                            makeCanvasView()
+                            
+                            makeActionView(isHorizontal: false)
+                        }
+                    }
                 }
             }
         }
         .padding()
-        .navigationTitle(titleValue)
+        .localTitle(.root)
         .navigationBarTitleDisplayMode(.inline)
         .preferredColorScheme(viewModel.increaseContrast ? viewModel.bgType?.colorScheme : nil)
         .popover(isPresented: $showSetting) {
@@ -45,12 +59,6 @@ struct ContentView: View {
                 viewModel: viewModel
             )
             .presentationDetents([.medium, .large])
-        }
-        .onChange(of: languageManager.locale) { _, _ in
-            titleValue = languageManager.language.appName
-        }
-        .onAppear {
-            titleValue = languageManager.language.appName
         }
     }
     
@@ -135,48 +143,71 @@ struct ContentView: View {
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .disabled(!begin)
     }
     
     @ViewBuilder
     func makeActionView(isHorizontal: Bool) -> some View {
+        let checkButton = ActionButton(title: lCheckNameKey) {
+            viewModel.showAnswer()
+        }.disabled(viewModel.checkRes != .checking || !begin)
+        
+        let helpButton = ActionButton(title: lHelpNameKey) {
+            showInfo = true
+        }
+        
+        let nextButton = ActionButton(title: lNextNameKey) {
+            viewModel.general()
+        }
+        
+        let settingButton = ActionButton(title: lSettingNameKey) {
+            showSetting = true
+        }
+        
         if isHorizontal {
             VStack {
-                ActionButton(title: lCheckNameKey) {
-                    viewModel.showAnswer()
-                }.disabled(viewModel.checkRes != .checking)
+                checkButton
                 
-                ActionButton(title: lHelpNameKey) {
-                    showInfo = true
-                }
+                helpButton
                 
-                ActionButton(title: lNextNameKey) {
-                    viewModel.general()
-                }
+                nextButton
                 
-                ActionButton(title: lSettingNameKey) {
-                    showSetting = true
-                }
+                settingButton
             }
         } else {
             Grid(horizontalSpacing: 10, verticalSpacing: 10) {
                 GridRow {
-                    ActionButton(title: lCheckNameKey) {
-                        viewModel.showAnswer()
-                    }.disabled(viewModel.checkRes != .checking)
+                    checkButton
                     
-                    ActionButton(title: lHelpNameKey) {
-                        showInfo = true
-                    }
+                    helpButton
                 }
                 
                 GridRow {
-                    ActionButton(title: lNextNameKey) {
-                        viewModel.general()
+                    if begin {
+                        nextButton
+                    } else {
+                        ActionButton(title: lLocalizationBeginNameKey) {
+                            begin = true
+                            viewModel.general()
+                        }
                     }
                     
-                    ActionButton(title: lSettingNameKey) {
-                        showSetting = true
-                    }
+                    settingButton
+                }
+            }
+        }
+    }
+    
+    @ViewBuilder
+    func makeFirstUseTips() -> some View {
+        GroupBox(lTipsNameKey) {
+            ScrollView {
+                Text(lLocalizationFirstTipsNameKey)
+            }
+            
+            ActionButton(title: lLocalizationOKNameKey) {
+                withAnimation {
+                    confirmed = true
                 }
             }
         }

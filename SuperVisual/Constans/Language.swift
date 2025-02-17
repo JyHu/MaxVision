@@ -41,6 +41,11 @@ enum Language: String, CaseIterable, Identifiable {
     }
 }
 
+enum NavigationType {
+    case root
+    case setting
+}
+
 extension Language {
     var settingName: String {
         switch self {
@@ -73,6 +78,13 @@ extension Language {
         case .portuguese: "Super Visual"
         case .italian: "Super Visivo"
         case .thai: "ซุปเปอร์วิชวล"
+        }
+    }
+    
+    func titleFor(_ navigationType: NavigationType) -> String {
+        switch navigationType {
+        case .root: appName
+        case .setting: settingName
         }
     }
 }

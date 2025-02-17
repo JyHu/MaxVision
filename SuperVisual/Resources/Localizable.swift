@@ -61,6 +61,16 @@ let lIncreaseContrastNameKey: LocalizedStringKey = "com.auu.increaseContrast"
 // 语言
 let lLanguageNameKey: LocalizedStringKey = "com.auu.language"
 
+// 确定
+let lLocalizationOKNameKey: LocalizedStringKey = "com.auu.localization.OK"
+
+// 开始
+let lLocalizationBeginNameKey: LocalizedStringKey = "com.auu.localization.begin"
+
+// 超级视觉是一款专为测试颜色辨识度而设计的应用。它能够根据你的设定生成不同布局和颜色属性的色块矩阵，你的任务是在众多色块中找出那个独特的不同色块。
+// 为了更好地完成测试，你可以在“帮助”中查看现有的辅助选项，或添加更多辅助功能，以提升体验。
+let lLocalizationFirstTipsNameKey: LocalizedStringKey = "com.auu.localization.firstTips"
+
 // 超级视觉
 let lSuperVisualNameKey: LocalizedStringKey = "com.auu.localization.superVisual"
 
@@ -87,4 +97,7 @@ let lSettingNameKey: LocalizedStringKey = "com.auu.setting"
 
 // 特殊
 let lSpecialNameKey: LocalizedStringKey = "com.auu.special"
+
+// 提示
+let lTipsNameKey: LocalizedStringKey = "com.auu.tips"
 

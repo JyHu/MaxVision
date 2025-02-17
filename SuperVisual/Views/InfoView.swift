@@ -27,7 +27,7 @@ struct InfoView: View {
             ScrollView {
                 VStack {
                     GroupBox(lCurrentNameKey) {
-                        Grid(horizontalSpacing: 0) {
+                        Grid(horizontalSpacing: 0, verticalSpacing: 15) {
                             GridRow {
                                 HStack {
                                     Spacer()
@@ -43,17 +43,35 @@ struct InfoView: View {
                                 }
                                 .padding(.leading, 8)
                             }
+                            .foregroundStyle(.secondary)
                             
                             GridRow {
                                 HStack {
                                     Spacer()
                                     
-                                    Text("\(normalColorInfo.red), \(normalColorInfo.green), \(normalColorInfo.blue)")
+                                    Text(normalColorInfo.hexString)
                                 }
                                 .padding(.trailing, 8)
                                 
                                 HStack {
-                                    Text("\(quesColorInfo.red), \(quesColorInfo.green), \(quesColorInfo.blue)")
+                                    Text(quesColorInfo.hexString)
+                                    
+                                    Spacer()
+                                }
+                                .padding(.leading, 8)
+                            }
+                            .fontDesign(.monospaced)
+                            
+                            GridRow {
+                                HStack {
+                                    Spacer()
+                                    
+                                    Text(normalColorInfo.rgbString)
+                                }
+                                .padding(.trailing, 8)
+                                
+                                HStack {
+                                    Text(quesColorInfo.rgbString)
                                     
                                     Spacer()
                                 }
@@ -87,8 +105,14 @@ struct InfoView: View {
                     makeToggleBox(lIncreaseContrastNameKey, value: $viewModel.increaseContrast, tips: lContrastTipsNameKey)
                     
                     HStack {
+                        Text(lLocalizationFirstTipsNameKey)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
                         
+                        Spacer()
                     }
+                    .padding(.horizontal, 18)
+                    .padding(.vertical, 20)
                 }
                 .padding(.horizontal, 18)
             }

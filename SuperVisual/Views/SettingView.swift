@@ -14,8 +14,7 @@ struct SettingView: View {
     
     @Environment(\.dismiss) var dismissAction
     
-    @EnvironmentObject var languageManager: LanguageManager
-    @State private var titleValue: String = "Setting"
+    @EnvironmentObject private var languageManager: LanguageManager
             
     init(viewModel: ViewModel) {
         self.tmpModel = SettingViewModel(model: viewModel)
@@ -61,7 +60,7 @@ struct SettingView: View {
                 .padding(.horizontal, 18)
             }
             .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(titleValue)
+            .localTitle(.setting)
             .toolbar {
                 ToolbarItem(placement: .bottomBar) {
                     Button {
@@ -76,12 +75,6 @@ struct SettingView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 8))
                     }
                 }
-            }
-            .onChange(of: languageManager.locale) { _, _ in
-                titleValue = languageManager.language.settingName
-            }
-            .onAppear {
-                titleValue = languageManager.language.settingName
             }
         }
     }

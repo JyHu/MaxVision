@@ -6,19 +6,26 @@
 	<string>zh-Hans</string>
 	<key>constChangedAlert</key>
 	<true/>
-	<key>constFiles</key>
-	<dict>
-		<key>/SuperVisual/Resources/Localizable.strings</key>
-		<string>/SuperVisual/Resources/Localizable.swift</string>
-	</dict>
 	<key>constPattern</key>
 	<string>^[a-zA-Z_][0-9a-zA-Z_]+$</string>
+	<key>fileInfos</key>
+	<dict>
+		<key>/SuperVisual/Resources/Localizable.strings</key>
+		<dict>
+			<key>parseAsLocalizedKey</key>
+			<true/>
+			<key>relatedConstFilePath</key>
+			<string>/SuperVisual/Resources/Localizable.swift</string>
+		</dict>
+	</dict>
 	<key>fileRegions</key>
 	<array/>
 	<key>keyChangedAlert</key>
 	<true/>
 	<key>keyPattern</key>
 	<string>^[a-zA-Z0-9\.\-_]+$</string>
+	<key>keyPrefix</key>
+	<string>com.auu.localization.</string>
 	<key>localizedMethods</key>
 	<dict>
 		<key>oc</key>
@@ -26,6 +33,8 @@
 		<key>swift</key>
 		<array/>
 	</dict>
+	<key>removeWhiteChars</key>
+	<true/>
 	<key>showSyncCreate</key>
 	<true/>
 </dict>

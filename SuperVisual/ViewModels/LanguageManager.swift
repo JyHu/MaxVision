@@ -19,7 +19,7 @@ class LanguageManager: ObservableObject {
             changeLanguage(to: language.rawValue)
         }
     }
-
+    
     init() {
         if let languageCode = UserDefaults.standard.string(forKey: "com.auu.language") {
             language = Language(rawValue: languageCode) ?? .english

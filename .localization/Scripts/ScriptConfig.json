@@ -8,6 +8,7 @@
     "editingValidation" : false,
     "importStrings" : false,
     "keyGenerator" : false,
-    "translator" : false
+    "translator" : false,
+    "trying" : false
   }
 }

@@ -59,6 +59,16 @@
 // 语言
 "com.auu.language" = "Lingua";
 
+// 确定
+"com.auu.localization.OK" = "OK";
+
+// 开始
+"com.auu.localization.begin" = "Iniziare";
+
+// 超级视觉是一款专为测试颜色辨识度而设计的应用。它能够根据你的设定生成不同布局和颜色属性的色块矩阵，你的任务是在众多色块中找出那个独特的不同色块。
+// 为了更好地完成测试，你可以在“帮助”中查看现有的辅助选项，或添加更多辅助功能，以提升体验。
+"com.auu.localization.firstTips" = "Super Visual è un'app progettata specificamente per testare la tua capacità di riconoscere i colori. Può generare matrici di blocchi di colore con layout e attributi di colore diversi in base alle tue impostazioni. Il tuo compito è trovare il blocco di colore unico e diverso tra molti.\n\nPer completare meglio il test, puoi consultare le opzioni di assistenza esistenti nella sezione \"Aiuto\" o aggiungere ulteriori opzioni per migliorare l'esperienza.";
+
 // 超级视觉
 "com.auu.localization.superVisual" = "Super Visivo";
 
@@ -85,4 +95,7 @@
 
 // 特殊
 "com.auu.special" = "Speciale";
+
+// 提示
+"com.auu.tips" = "Suggerimenti";
 
