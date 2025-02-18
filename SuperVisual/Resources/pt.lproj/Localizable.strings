@@ -65,12 +65,15 @@
 // 开始
 "com.auu.localization.begin" = "Começar";
 
-// 超级视觉是一款专为测试颜色辨识度而设计的应用。它能够根据你的设定生成不同布局和颜色属性的色块矩阵，你的任务是在众多色块中找出那个独特的不同色块。
+// 超视觉是一款专为测试颜色辨识度而设计的应用。它能够根据你的设定生成不同布局和颜色属性的色块矩阵，你的任务是在众多色块中找出那个独特的不同色块。
 // 为了更好地完成测试，你可以在“帮助”中查看现有的辅助选项，或添加更多辅助功能，以提升体验。
-"com.auu.localization.firstTips" = "Super Visual é um aplicativo projetado especificamente para testar sua capacidade de reconhecimento de cores. Ele pode gerar matrizes de blocos de cores com diferentes layouts e atributos de cor com base nas suas configurações. Sua tarefa é encontrar o bloco de cor único e diferente entre muitos.\n\nPara concluir melhor o teste, você pode visualizar as opções de ajuda existentes na seção \"Ajuda\" ou adicionar mais opções para melhorar a experiência.";
+"com.auu.localization.firstTips" = "Max Vision é um aplicativo projetado especificamente para testar a capacidade de reconhecimento de cores. Ele pode gerar matrizes de blocos de cores com diferentes layouts e propriedades de cor com base nas suas configurações. Sua tarefa é encontrar o bloco de cor único entre muitos outros.\n\nPara concluir o teste de forma mais eficaz, você pode verificar as opções de assistência existentes na seção \"Ajuda\" ou adicionar mais recursos para melhorar a experiência.";
 
-// 超级视觉
-"com.auu.localization.superVisual" = "Super Visual";
+// 超视觉
+"com.auu.localization.maxVision" = "Max Visão";
+
+// 所有本地化文案均由 ChatGPT 翻译完成！
+"com.auu.localization.translateTips" = "Todos os textos localizados foram traduzidos pelo ChatGPT!";
 
 // 合并网格
 "com.auu.mergeGrid" = "Mesclar grade";

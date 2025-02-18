@@ -1,9 +1,9 @@
-. Super Visual
+. Max Vision
 
 
 | | | |
 |:--:|:--:|:--:|
-| 测试页面 | 帮助页面 | 设置页面 |
-| ![IMG_0305](./Images/IMG_0305.PNG) | ![IMG_0306](./Images/IMG_0306.PNG) | ![IMG_0307](./Images/IMG_0307.PNG) |
-| 语言色纸 | 结果显示 | |
-| ![IMG_0308](./Images/IMG_0308.PNG) | ![IMG_0309](./Images/IMG_0309.PNG) | |
+| Test View | Result View | Help View |
+| ![IMG_0305](./Images/img01.png) | ![IMG_0306](./Images/img02.png) | ![IMG_0307](./Images/img03.png) |
+| Setting View | Languages | |
+| ![IMG_0308](./Images/img04.png) | ![IMG_0309](./Images/img05.png) | |

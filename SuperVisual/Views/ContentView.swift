@@ -12,7 +12,8 @@ struct ContentView: View {
     @State private var showInfo = false
     @ObservedObject var viewModel = ViewModel()
     
-    @AppStorage("com.auu.confirmed") private var confirmed: Bool = false
+    // @AppStorage("com.auu.confirmed")
+    @State private var confirmed: Bool = false
     @State private var begin: Bool = false
     
     var body: some View {
@@ -20,27 +21,19 @@ struct ContentView: View {
             GeometryReader { proxy in
                 /// 横向
                 if proxy.size.width > proxy.size.height {
-                    if !confirmed {
-                        makeFirstUseTips()
-                    } else {
-                        HStack {
-                            makeCanvasView()
-                            
-                            makeActionView(isHorizontal: true)
-                                .frame(width: 220)
-                        }
+                    HStack {
+                        makeCanvasView()
+                        
+                        makeActionView(isHorizontal: true)
+                            .frame(width: 220)
                     }
                 }
                 // 纵向
                 else {
-                    if !confirmed {
-                        makeFirstUseTips()
-                    } else {
-                        VStack {
-                            makeCanvasView()
-                            
-                            makeActionView(isHorizontal: false)
-                        }
+                    VStack {
+                        makeCanvasView()
+                        
+                        makeActionView(isHorizontal: false)
                     }
                 }
             }
@@ -59,6 +52,9 @@ struct ContentView: View {
                 viewModel: viewModel
             )
             .presentationDetents([.medium, .large])
+        }
+        .popover(isPresented: Binding(get: { !confirmed }, set: { confirmed = !$0 })) {
+            FirstUseTipView()
         }
     }
     
@@ -197,19 +193,27 @@ struct ContentView: View {
             }
         }
     }
+}
+
+struct FirstUseTipView: View {
+    @Environment(\.dismiss) private var dismissAction
+    @AppStorage("com.auu.confirmed") private var confirmed: Bool = false
     
-    @ViewBuilder
-    func makeFirstUseTips() -> some View {
-        GroupBox(lTipsNameKey) {
-            ScrollView {
-                Text(lLocalizationFirstTipsNameKey)
-            }
-            
-            ActionButton(title: lLocalizationOKNameKey) {
-                withAnimation {
+    var body: some View {
+        NavigationStack {
+            VStack {
+                ScrollView {
+                    Text(lLocalizationFirstTipsNameKey)
+                }
+                
+                ActionButton(title: lLocalizationOKNameKey) {
                     confirmed = true
+                    dismissAction()
                 }
             }
+            .padding(.all, 20)
+            .navigationBarTitleDisplayMode(.inline)
+            .navigationTitle(lTipsNameKey)
         }
     }
 }

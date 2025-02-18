@@ -66,18 +66,18 @@ extension Language {
     
     var appName: String {
         switch self {
-        case .simpleChinese: "超级视觉"
-        case .traditionalChinese: "超級視覺"
-        case .english: "Super Visual"
-        case .spanish: "Super Visual"
-        case .french: "Super Visuel"
-        case .german: "Super Visuell"
-        case .russian: "Супер Визуальный"
-        case .japanese: "スーパー視覚"
-        case .korean: "슈퍼 비주얼"
-        case .portuguese: "Super Visual"
-        case .italian: "Super Visivo"
-        case .thai: "ซุปเปอร์วิชวล"
+        case .simpleChinese: "超视觉"
+        case .traditionalChinese: "超視覺"
+        case .english: "Max Vision"
+        case .spanish: "Max Visión"
+        case .french: "Max Vision"
+        case .german: "Max Vision"
+        case .russian: "Макс Вижн"
+        case .japanese: "マックス・ビジョン"
+        case .korean: "맥스 비전"
+        case .portuguese: "Max Visão"
+        case .italian: "Max Visione"
+        case .thai: "แม็กซ์ วิชั่น"
         }
     }
     

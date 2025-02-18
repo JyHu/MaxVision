@@ -54,8 +54,11 @@ struct SettingView: View {
                         }
                     }
                     
-                    /// 撑起底部的距离
-                    VStack { }.frame(height: 30)
+                    Text(lLocalizationTranslateTipsNameKey)
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .padding(.horizontal, 18)
+                        .padding(.vertical, 30)
                 }
                 .padding(.horizontal, 18)
             }

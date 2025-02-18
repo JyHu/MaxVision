@@ -21,12 +21,40 @@ class LanguageManager: ObservableObject {
     }
     
     init() {
+        func check(_ langRaw: String) -> Language {
+            if langRaw.contains("zh-Hans") {
+                return .simpleChinese
+            }
+            
+            if langRaw.contains("zh-Hant") {
+                return .traditionalChinese
+            }
+            
+            if langRaw == "zh" {
+                return .simpleChinese
+            }
+            
+            if langRaw.hasPrefix("en") {
+                return .english
+            }
+            
+            if let lang = Language(rawValue: langRaw) {
+                return lang
+            }
+            
+            return .english
+        }
+        
         if let languageCode = UserDefaults.standard.string(forKey: "com.auu.language") {
             language = Language(rawValue: languageCode) ?? .english
-        } else if let languageCode = locale.language.languageCode?.identifier {
-            language = Language(rawValue: languageCode) ?? .english
         } else {
-            language = .english
+            if let preferredLanguage = Locale.preferredLanguages.first {
+                language = check(preferredLanguage)
+            } else if let languageCode = locale.language.languageCode?.identifier {
+                language = check(languageCode)
+            } else {
+                language = .english
+            }
         }
     }
     

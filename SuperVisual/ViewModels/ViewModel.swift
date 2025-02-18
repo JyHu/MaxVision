@@ -22,7 +22,7 @@ class ViewModel: ObservableObject {
     
     @Published var selectedOffsets: Set<RGBComponent> = [.R, .G, .B]
     
-    @Published var rows: Int = 5
+    @Published var rows: Int = 7
     @Published var columns: Int = 5
     
     @Published var autoNext: Bool = true {
