@@ -2,9 +2,9 @@
 **最近更新日期 / Last Updated: 2025**  
 
 ## 1. 引言 / Introduction  
-欢迎使用 **超级视觉**（以下简称“本应用”）。我们重视用户的隐私，并承诺保护您的个人信息。本隐私政策旨在向您说明我们如何处理与您的隐私相关的事项。  
+欢迎使用 **超视觉**（以下简称“本应用”）。我们重视用户的隐私，并承诺保护您的个人信息。本隐私政策旨在向您说明我们如何处理与您的隐私相关的事项。  
 
-Welcome to **Super Vision** (referred to as "this app"). We value user privacy and are committed to protecting your personal information. This privacy policy explains how we handle matters related to your privacy.  
+Welcome to **Max Vision** (referred to as "this app"). We value user privacy and are committed to protecting your personal information. This privacy policy explains how we handle matters related to your privacy.  
 
 ## 2. 我们收集的信息 / Information We Collect  
 本应用 **不会收集、存储或共享任何用户的个人信息**，包括但不限于：  
