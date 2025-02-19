@@ -1,0 +1,146 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    background-color: #f5f5f5;
+}
+
+header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border: 1px solid rgba(0,0,0,0.1);
+}
+
+header h1 {
+    color: #ff4d4d;
+    margin: 0;
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    padding: 8px 15px;
+    border: 2px solid transparent;
+    border-radius: 5px;
+}
+
+nav a.active, nav a:hover {
+    background: #ff4d4d;
+    color: white;
+    border-color: #ff4d4d;
+}
+
+main {
+    max-width: 720px;
+    margin: 40px auto 0;
+    padding: 30px;
+    background: white;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+th {
+    background: #f2f2f2;
+}
+
+img {
+    width: 100px;
+    height: auto;
+}
+
+table img {
+    width: 200px;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+footer {
+    margin-top: 0;
+    padding: 10px 0;
+    text-align: center;
+    color: #666;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+footer p {
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-links a {
+    color: #666;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    color: #ff4d4d;
+}
+
+.footer-links span {
+    color: #ccc;
+}
+
+.tabs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tabs a {
+    color: #666;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.tabs a.active {
+    color: #ff4d4d;
+    font-weight: 500;
+}
+
+.tabs span {
+    color: #ccc;
+}
