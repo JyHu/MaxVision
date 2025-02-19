@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct SettingView: View {
     @ObservedObject private var tmpModel: SettingViewModel
@@ -15,14 +16,14 @@ struct SettingView: View {
     @Environment(\.dismiss) var dismissAction
     
     @EnvironmentObject private var languageManager: LanguageManager
-            
+        
     init(viewModel: ViewModel) {
         self.tmpModel = SettingViewModel(model: viewModel)
         self.viewModel = viewModel
     }
     
     var body: some View {
-        NavigationStack {
+        let content = NavigationStack {
             ScrollView {
                 VStack(spacing: 10) {
                     makeConfigBox(lRGBRangeNameKey, tips: lRGBRangeTipsNameKey) {
@@ -54,6 +55,11 @@ struct SettingView: View {
                         }
                     }
                     
+                    if UIDevice.current.userInterfaceIdiom == .pad {
+                        makeSaveButton()
+                            .padding(.vertical, 20)
+                    }
+                    
                     Text(lLocalizationTranslateTipsNameKey)
                         .font(.caption)
                         .foregroundStyle(.secondary)
@@ -64,21 +70,31 @@ struct SettingView: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .localTitle(.setting)
-            .toolbar {
+        }
+        
+        if UIDevice.current.userInterfaceIdiom == .pad {
+            content
+        } else {
+            content.toolbar {
                 ToolbarItem(placement: .bottomBar) {
-                    Button {
-                        viewModel.merge(from: tmpModel)
-                        dismissAction()
-                    } label: {
-                        Text(lSaveNameKey)
-                            .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(width: 240, height: 44)
-                            .background(.blue)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                    }
+                    makeSaveButton()
                 }
             }
+        }
+    }
+    
+    @ViewBuilder
+    func makeSaveButton() -> some View {
+        Button {
+            viewModel.merge(from: tmpModel)
+            dismissAction()
+        } label: {
+            Text(lSaveNameKey)
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity)
+                .frame(width: 240, height: 44)
+                .background(.blue)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
         }
     }
     

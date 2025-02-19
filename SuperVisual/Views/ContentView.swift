@@ -12,9 +12,10 @@ struct ContentView: View {
     @State private var showInfo = false
     @ObservedObject var viewModel = ViewModel()
     
-    // @AppStorage("com.auu.confirmed")
-    @State private var confirmed: Bool = false
+    @AppStorage("com.auu.confirmed") private var confirmed: Bool = false
     @State private var begin: Bool = false
+    
+    @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
         VStack {
@@ -42,18 +43,23 @@ struct ContentView: View {
         .localTitle(.root)
         .navigationBarTitleDisplayMode(.inline)
         .preferredColorScheme(viewModel.increaseContrast ? viewModel.bgType?.colorScheme : nil)
-        .popover(isPresented: $showSetting) {
+        .sheet(isPresented: $showSetting) {
             SettingView(viewModel: viewModel)
         }
-        .popover(isPresented: $showInfo) {
-            InfoView(
+        .sheet(isPresented: $showInfo) {
+            let infoView = InfoView(
                 normalColorInfo: viewModel.normalColorInfo,
                 quesColorInfo: viewModel.quesColorInfo,
                 viewModel: viewModel
             )
-            .presentationDetents([.medium, .large])
+            
+            if horizontalSizeClass == .regular {
+                infoView
+            } else {
+                infoView.presentationDetents([.medium, .large])
+            }
         }
-        .popover(isPresented: Binding(get: { !confirmed }, set: { confirmed = !$0 })) {
+        .sheet(isPresented: Binding(get: { !confirmed }, set: { confirmed = !$0 })) {
             FirstUseTipView()
         }
     }
@@ -166,7 +172,14 @@ struct ContentView: View {
                 
                 helpButton
                 
-                nextButton
+                if begin {
+                    nextButton
+                } else {
+                    ActionButton(title: lLocalizationBeginNameKey) {
+                        begin = true
+                        viewModel.general()
+                    }
+                }
                 
                 settingButton
             }
@@ -207,13 +220,15 @@ struct FirstUseTipView: View {
                 }
                 
                 ActionButton(title: lLocalizationOKNameKey) {
-                    confirmed = true
                     dismissAction()
                 }
             }
             .padding(.all, 20)
             .navigationBarTitleDisplayMode(.inline)
             .navigationTitle(lTipsNameKey)
+        }
+        .onDisappear {
+            confirmed = true
         }
     }
 }
