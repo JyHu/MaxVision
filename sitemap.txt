@@ -1,2 +1,6 @@
+http://example.com/privacy/index.html
+http://example.com/list/index.html
+http://example.com/about/index.html
+http://example.com/index/index.html
 http://example.com/2025/02/19/hello-world/
 http://example.com/
