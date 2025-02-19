@@ -16,85 +16,81 @@ struct SettingView: View {
     @Environment(\.dismiss) var dismissAction
     
     @EnvironmentObject private var languageManager: LanguageManager
-        
+            
     init(viewModel: ViewModel) {
         self.tmpModel = SettingViewModel(model: viewModel)
         self.viewModel = viewModel
     }
     
     var body: some View {
-        let content = NavigationStack {
-            ScrollView {
-                VStack(spacing: 10) {
-                    makeConfigBox(lRGBRangeNameKey, tips: lRGBRangeTipsNameKey) {
-                        SliderRow(.R, value: tmpModel.obR, viewModel: tmpModel).padding(.top, 10)
-                        SliderRow(.G, value: tmpModel.obG, viewModel: tmpModel)
-                        SliderRow(.B, value: tmpModel.obB, viewModel: tmpModel)
-                    }
-                    
-                    makeConfigBox(lRGBOffsetNameKey, tips: lRGBOffsetTipsNameKey) {
-                        makeRGBRow(.R, value: $tmpModel.rf)
-                        makeRGBRow(.G, value: $tmpModel.gf)
-                        makeRGBRow(.B, value: $tmpModel.bf)
-                    }
-                    
-                    makeConfigBox(lGridNameKey, tips: lGridTipsNameKey) {
-                        makeGridRow(lGridRowsNameKey, value: $tmpModel.rows)
-                        makeGridRow(lGridColumnsNameKey, value: $tmpModel.columns)
-                    }
-                    
-                    GroupBox {
-                        HStack {
-                            Text(lLanguageNameKey)
-                            Spacer()
-                            Picker("", selection: $languageManager.language) {
-                                ForEach(Language.allCases, id: \.self) {
-                                    Text($0.displayName).tag($0)
-                                }
-                            }.labelsHidden()
+        NavigationStack {
+            ZStack(alignment: .bottom) {
+                ScrollView {
+                    VStack(spacing: 10) {
+                        makeConfigBox(lRGBRangeNameKey, tips: lRGBRangeTipsNameKey) {
+                            SliderRow(.R, value: tmpModel.obR, viewModel: tmpModel).padding(.top, 10)
+                            SliderRow(.G, value: tmpModel.obG, viewModel: tmpModel)
+                            SliderRow(.B, value: tmpModel.obB, viewModel: tmpModel)
                         }
+                        
+                        makeConfigBox(lRGBOffsetNameKey, tips: lRGBOffsetTipsNameKey) {
+                            makeRGBRow(.R, value: $tmpModel.rf)
+                            makeRGBRow(.G, value: $tmpModel.gf)
+                            makeRGBRow(.B, value: $tmpModel.bf)
+                        }
+                        
+                        makeConfigBox(lGridNameKey, tips: lGridTipsNameKey) {
+                            makeGridRow(lGridRowsNameKey, value: $tmpModel.rows)
+                            makeGridRow(lGridColumnsNameKey, value: $tmpModel.columns)
+                        }
+                        
+                        GroupBox {
+                            HStack {
+                                Text(lLanguageNameKey)
+                                Spacer()
+                                Picker("", selection: $languageManager.language) {
+                                    ForEach(Language.allCases, id: \.self) {
+                                        Text($0.displayName).tag($0)
+                                    }
+                                }.labelsHidden()
+                            }
+                        }
+                        
+                        Text(lLocalizationTranslateTipsNameKey)
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                            .padding(.horizontal, 18)
+                            .padding(.vertical, 30)
                     }
-                    
-                    if UIDevice.current.userInterfaceIdiom == .pad {
-                        makeSaveButton()
-                            .padding(.vertical, 20)
-                    }
-                    
-                    Text(lLocalizationTranslateTipsNameKey)
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                        .padding(.horizontal, 18)
-                        .padding(.vertical, 30)
+                    .padding(.horizontal, 18)
+                    .padding(.bottom, 72)
                 }
-                .padding(.horizontal, 18)
+                
+                VStack(alignment: .center, spacing: 0) {
+                    Divider()
+                    
+                    Spacer()
+                    
+                    Button {
+                        viewModel.merge(from: tmpModel)
+                        dismissAction()
+                    } label: {
+                        Text(lSaveNameKey)
+                            .foregroundStyle(.white)
+                            .frame(maxWidth: .infinity)
+                            .frame(width: 240, height: 44)
+                            .background(.blue)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                    
+                    Spacer()
+                }
+                .frame(height: 72)
+                .frame(maxWidth: .infinity)
+                .background(Material.ultraThinMaterial)
             }
             .navigationBarTitleDisplayMode(.inline)
             .localTitle(.setting)
-        }
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            content
-        } else {
-            content.toolbar {
-                ToolbarItem(placement: .bottomBar) {
-                    makeSaveButton()
-                }
-            }
-        }
-    }
-    
-    @ViewBuilder
-    func makeSaveButton() -> some View {
-        Button {
-            viewModel.merge(from: tmpModel)
-            dismissAction()
-        } label: {
-            Text(lSaveNameKey)
-                .foregroundStyle(.white)
-                .frame(maxWidth: .infinity)
-                .frame(width: 240, height: 44)
-                .background(.blue)
-                .clipShape(RoundedRectangle(cornerRadius: 8))
         }
     }
     
