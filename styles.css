@@ -195,3 +195,57 @@ footer p {
 #markdown-content em {
     color: #666;
 }
+
+/* 语言选择器样式 */
+.language-selector {
+    position: relative;
+    display: inline-block;
+}
+
+.language-selector button {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 0;
+}
+
+.language-selector button:hover {
+    color: #ff4d4d;
+}
+
+.language-menu {
+    display: none;
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 8px 0;
+    margin-bottom: 10px;
+    min-width: 150px;
+}
+
+.language-menu.show {
+    display: block;
+}
+
+.language-menu a {
+    display: block;
+    padding: 8px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.language-menu a:hover {
+    background: #f5f5f5;
+}
+
+.language-menu a.active {
+    color: #ff4d4d;
+    font-weight: 500;
+}
