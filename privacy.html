@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>隐私政策 - Max Vision</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/privacy.js"></script>
 </head>
 <body>
     <main>
@@ -24,60 +26,7 @@
             </div>
         </header>
 
-        <h1>隐私政策 / Privacy Policy</h1>
-        <p><strong>最近更新日期 / Last Updated: 2025</strong></p>
-
-        <h2>1. 引言 / Introduction</h2>
-        <p>欢迎使用 <strong>超视觉</strong>（以下简称"本应用"）。我们重视用户的隐私，并承诺保护您的个人信息。本隐私政策旨在向您说明我们如何处理与您的隐私相关的事项。</p>
-        <p>Welcome to <strong>Max Vision</strong> (referred to as "this app"). We value user privacy and are committed to protecting your personal information. This privacy policy explains how we handle matters related to your privacy.</p>
-
-        <h2>2. 我们收集的信息 / Information We Collect</h2>
-        <p>本应用 <strong>不会收集、存储或共享任何用户的个人信息</strong>，包括但不限于：</p>
-        <ul>
-            <li>个人身份信息（如姓名、电子邮件、电话号码等）</li>
-            <li>设备信息</li>
-            <li>位置数据</li>
-            <li>用户行为数据</li>
-        </ul>
-        <p>This app <strong>does not collect, store, or share any user personal information</strong>, including but not limited to:</p>
-        <ul>
-            <li>Personally identifiable information (such as name, email, phone number, etc.)</li>
-            <li>Device information</li>
-            <li>Location data</li>
-            <li>User behavior data</li>
-        </ul>
-
-        <h2>3. 权限使用说明 / Permissions Usage</h2>
-        <p>本应用 <strong>不需要任何特殊权限</strong>。</p>
-        <p>所有用户设置信息 <strong>仅存储在本地设备上</strong>，用于提供更好的使用体验，<strong>不会上传到网络或共享给第三方</strong>。</p>
-        <p>This app <strong>does not require any special permissions</strong>.</p>
-        <p>All user settings are <strong>stored locally on the device</strong> to provide a better user experience and <strong>are not uploaded to the internet or shared with third parties</strong>.</p>
-
-        <h2>4. 第三方服务 / Third-Party Services</h2>
-        <p>本应用 <strong>不使用任何第三方分析工具、广告服务或数据追踪服务</strong>，因此不会向任何第三方共享用户数据。</p>
-        <p>This app <strong>does not use any third-party analytics tools, advertising services, or data tracking services</strong>, and therefore does not share user data with any third parties.</p>
-
-        <h2>5. 数据安全 / Data Security</h2>
-        <p>由于本应用不收集用户数据，因此无数据存储或泄露的风险。所有用户设置信息均 <strong>仅存储在本地设备上</strong>，不会通过网络进行传输或存储。</p>
-        <p>Since this app does not collect user data, there is no risk of data storage or leakage. All user settings are <strong>stored locally on the device</strong> and are not transmitted or stored over the internet.</p>
-
-        <h2>6. 儿童隐私保护 / Children's Privacy Protection</h2>
-        <p>本应用遵守适用的儿童隐私保护法律。本应用不会收集任何用户信息，因此不会收集或存储儿童的任何数据。</p>
-        <p>This app complies with applicable children's privacy protection laws. It does not collect any user information and therefore does not collect or store any children's data.</p>
-
-        <h2>7. 隐私政策的更新 / Updates to This Privacy Policy</h2>
-        <p>我们可能会不时更新本隐私政策，以符合最新的法律法规或业务需求。更新后的隐私政策将在本页面上发布，并以新的"最近更新日期"标注。</p>
-        <p>We may update this privacy policy from time to time to comply with the latest legal requirements or business needs. The updated privacy policy will be published on this page with a new "Last Updated" date.</p>
-
-        <h2>8. 联系我们 / Contact Us</h2>
-        <p>如果您对本隐私政策有任何疑问或建议，请通过以下方式联系我们：</p>
-        <ul>
-            <li><strong>Github</strong>：<a href="https://github.com/JyHu/MaxVision" target="_blank">https://github.com/JyHu/MaxVision</a></li>
-        </ul>
-        <p>If you have any questions or suggestions regarding this privacy policy, please contact us through the following methods:</p>
-        <ul>
-            <li><strong>Github</strong>: <a href="https://github.com/JyHu/MaxVision" target="_blank">https://github.com/JyHu/MaxVision</a></li>
-        </ul>
+        <div id="markdown-content"></div>
     </main>
 
     <footer>
@@ -89,5 +38,9 @@
             <a href="https://github.com/JyHu" target="_blank">GitHub</a>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('markdown-content').innerHTML = marked.parse(privacyContent);
+    </script>
 </body>
 </html>

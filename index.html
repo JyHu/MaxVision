@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Max Vision</title>
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/index.js"></script>
 </head>
 <body>
     <main>
@@ -24,34 +26,7 @@
             </div>
         </header>
 
-        <p>超视觉是一款专为测试颜色辨识度而设计的应用。它能够根据你的设定生成不同布局和颜色属性的色块矩阵，你的任务是在众多色块中找出那个独特的不同色块。</p>
-        <p>为了更好地完成测试，你可以在"帮助"中查看现有的辅助选项，或添加更多辅助功能，以提升体验。</p>
-
-        <p>Max Vision is an app specifically designed to test color recognition ability. It can generate color block matrices with different layouts and color properties based on your settings. Your task is to find the unique color block among many others.</p>
-        <p>To complete the test more effectively, you can check the existing assistance options in the "Help" section or add more features to enhance your experience.</p>
-
-        <table>
-            <tr>
-                <th>Test View</th>
-                <th>Result View</th>
-                <th>Help View</th>
-            </tr>
-            <tr>
-                <td><img src="res/img01.png" alt="IMG_0305"></td>
-                <td><img src="res/img02.png" alt="IMG_0306"></td>
-                <td><img src="res/img03.png" alt="IMG_0307"></td>
-            </tr>
-            <tr>
-                <th>Setting View</th>
-                <th>Languages</th>
-                <th></th>
-            </tr>
-            <tr>
-                <td><img src="res/img04.png" alt="IMG_0308"></td>
-                <td><img src="res/img05.png" alt="IMG_0309"></td>
-                <td></td>
-            </tr>
-        </table>
+        <div id="markdown-content"></div>
     </main>
 
     <footer>
@@ -63,5 +38,9 @@
             <a href="https://github.com/JyHu" target="_blank">GitHub</a>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('markdown-content').innerHTML = marked.parse(indexContent);
+    </script>
 </body>
 </html>
