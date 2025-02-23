@@ -87,10 +87,12 @@ struct RangeSlider: View {
                 context.fill(Path(ellipseIn: CGRect(x: rightSquareX, y: 0, width: squareSize, height: squareSize)), with: .color(.white))
             }
             .frame(width: size.width, height: size.height)
-            .gesture(
-                DragGesture()
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 0)
                     .onChanged { value in
                         let location = value.location
+                        
+                        print("drag \(location)")
 
                         if let squareSide {
                             if squareSide == .left {
