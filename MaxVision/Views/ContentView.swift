@@ -40,6 +40,8 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     @State private var preferedColorScheme: ColorScheme? = nil
     
+    @State private var showSide: Bool = false
+    
     var body: some View {
         makeContent()
             .localTitle(.root)
@@ -60,6 +62,17 @@ struct ContentView: View {
                     .pickerStyle(.segmented)
                     .help("Command + 1/2")
                 }
+                
+                ToolbarItem {
+                    Button {
+                        withAnimation {                        
+                            showSide.toggle()
+                        }
+                    } label: {
+                        Image(systemName: "sidebar.right")
+                            .foregroundStyle(showSide ? Color.accentColor : Color(nsColor: .labelColor))
+                    }
+                }
             }
             .onChange(of: viewModel.bgType) { oldValue, newValue in
                 if viewModel.increaseContrast {
@@ -67,6 +80,9 @@ struct ContentView: View {
                 } else {
                     preferedColorScheme = colorScheme
                 }
+            }
+            .onChange(of: side) { oldValue, newValue in
+                showSide = true
             }
     }
 }
@@ -104,19 +120,21 @@ private extension ContentView {
             }
             .padding(.all, 20)
             
-            Group {
-                if side == .setting {
-                    SettingView(viewModel: viewModel)
-                } else {
-                    InfoView(
-                        normalColorInfo: viewModel.normalColorInfo,
-                        quesColorInfo: viewModel.quesColorInfo,
-                        viewModel: viewModel
-                    )
+            if showSide {
+                Group {
+                    if side == .setting {
+                        SettingView(viewModel: viewModel)
+                    } else {
+                        InfoView(
+                            normalColorInfo: viewModel.normalColorInfo,
+                            quesColorInfo: viewModel.quesColorInfo,
+                            viewModel: viewModel
+                        )
+                    }
                 }
+                .padding(.vertical, 10)
+                .frame(minWidth: 360, maxWidth: 540)
             }
-            .padding(.vertical, 10)
-            .frame(minWidth: 360, maxWidth: 540)
         }
         .frame(minHeight: 540)
     }

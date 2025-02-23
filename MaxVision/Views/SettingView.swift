@@ -103,7 +103,7 @@ struct SettingView: View {
                 .foregroundStyle(.white)
                 .frame(maxWidth: .infinity)
                 .frame(width: 240, height: 44)
-                .background(.blue)
+                .background(Color.accentColor)
                 .clipShape(RoundedRectangle(cornerRadius: 8))
         }
             .buttonStyle(.borderless)
@@ -160,6 +160,7 @@ struct SettingView: View {
                 }
             } label: {
                 Image(systemName: isChecked ? "checkmark.circle" : "circle")
+                    .foregroundStyle(isChecked ? Color.accentColor : Color.secondary)
             }
             .frame(width: 30)
             .buttonStyle(.borderless)

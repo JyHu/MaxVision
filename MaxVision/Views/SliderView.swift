@@ -78,7 +78,7 @@ struct RangeSlider: View {
                 context.fill(Path(roundedRect: CGRect(x: 0, y: sliderY, width: size.width, height: sliderHeight), cornerRadius: sliderRadius), with: .color(.gray.opacity(0.6)))
                 
                 /// 绘制选中区间
-                context.fill(Path(CGRect(x: leftSquareX + squareRadius, y: sliderY, width: rightSquareX - leftSquareX, height: sliderHeight)), with: .color(.blue))
+                context.fill(Path(CGRect(x: leftSquareX + squareRadius, y: sliderY, width: rightSquareX - leftSquareX, height: sliderHeight)), with: .color(Color.accentColor))
                 
                 /// 绘制左侧滑块
                 context.fill(Path(ellipseIn: CGRect(x: leftSquareX, y: 0, width: squareSize, height: squareSize)), with: .color(.white))
