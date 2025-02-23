@@ -10,10 +10,12 @@ import SwiftUI
 struct MyGroupBox<T: View>: View {
     
     let title: LocalizedStringKey?
+    let spacing: Double
     @ViewBuilder var content: () -> T
 
-    init(_ title: LocalizedStringKey? = nil, @ViewBuilder content: @escaping () -> T) {
+    init(_ title: LocalizedStringKey? = nil, spacing: Double = 8, @ViewBuilder content: @escaping () -> T) {
         self.title = title
+        self.spacing = spacing
         self.content = content
     }
     
@@ -31,7 +33,7 @@ struct MyGroupBox<T: View>: View {
     
     @ViewBuilder
     func makeContent() -> some View {
-        let c = VStack {
+        let c = VStack(spacing: spacing) {
             content()
         }
         

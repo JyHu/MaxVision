@@ -46,7 +46,10 @@ struct SettingView: View {
         ScrollView {
             VStack(spacing: 10) {
                 makeConfigBox(lRGBRangeNameKey, tips: lRGBRangeTipsNameKey) {
-                    SliderRow(.R, value: tmpModel.obR, viewModel: tmpModel).padding(.top, 10)
+                    SliderRow(.R, value: tmpModel.obR, viewModel: tmpModel)
+#if !os(macOS)
+                        .padding(.top, 10)
+#endif
                     SliderRow(.G, value: tmpModel.obG, viewModel: tmpModel)
                     SliderRow(.B, value: tmpModel.obB, viewModel: tmpModel)
                 }

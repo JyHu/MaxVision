@@ -29,7 +29,7 @@ struct InfoView: View {
             ScrollView {
                 VStack {
                     MyGroupBox(lCurrentNameKey) {
-                        Grid(horizontalSpacing: 0, verticalSpacing: 15) {
+                        Grid(horizontalSpacing: 0, verticalSpacing: 8) {
                             GridRow {
                                 HStack {
                                     Spacer()

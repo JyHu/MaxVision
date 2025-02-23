@@ -37,10 +37,13 @@ struct ContentView: View {
     @AppStorage("com.auu.confirmed") private var confirmed: Bool = false
     @State private var begin: Bool = false
     
+    @Environment(\.colorScheme) var colorScheme
+    @State private var preferedColorScheme: ColorScheme? = nil
+    
     var body: some View {
         makeContent()
             .localTitle(.root)
-//            .preferredColorScheme(viewModel.increaseContrast ? viewModel.bgType?.colorScheme : ColorScheme.light)
+            .preferredColorScheme(preferedColorScheme)
             .sheet(isPresented: Binding(get: { !confirmed }, set: { confirmed = !$0 })) {
                 FirstUseTipView()
             }
@@ -55,10 +58,15 @@ struct ContentView: View {
                     }
                     .labelsHidden()
                     .pickerStyle(.segmented)
+                    .help("Command + 1/2")
                 }
             }
             .onChange(of: viewModel.bgType) { oldValue, newValue in
-                print("bgType: \(viewModel.bgType?.rawValue ?? "nil")")
+                if viewModel.increaseContrast {
+                    preferedColorScheme = newValue?.colorScheme ?? colorScheme
+                } else {
+                    preferedColorScheme = colorScheme
+                }
             }
     }
 }
@@ -80,11 +88,15 @@ private extension ContentView {
                         ActionButton(title: lNextNameKey) {
                             viewModel.general()
                         }
+                        .keyboardShortcut(KeyEquivalent("N"), modifiers: .command)
+                        .help("Command + N")
                     } else {
                         ActionButton(title: lLocalizationBeginNameKey) {
                             begin = true
                             viewModel.general()
                         }
+                        .keyboardShortcut(KeyEquivalent("N"), modifiers: .command)
+                        .help("Command + N")
                     }
                 }
                 .frame(height: 50)
