@@ -65,7 +65,7 @@ struct ContentView: View {
                 
                 ToolbarItem {
                     Button {
-                        withAnimation {                        
+                        withAnimation {
                             showSide.toggle()
                         }
                     } label: {
@@ -74,14 +74,14 @@ struct ContentView: View {
                     }
                 }
             }
-            .onChange(of: viewModel.bgType) { oldValue, newValue in
+            .onChange(of: viewModel.bgType) { _ in
                 if viewModel.increaseContrast {
-                    preferedColorScheme = newValue?.colorScheme ?? colorScheme
+                    preferedColorScheme = viewModel.bgType?.colorScheme ?? colorScheme
                 } else {
                     preferedColorScheme = colorScheme
                 }
             }
-            .onChange(of: side) { oldValue, newValue in
+            .onChange(of: side) { _ in
                 showSide = true
             }
     }

@@ -47,14 +47,12 @@ class LanguageManager: ObservableObject {
         
         if let languageCode = UserDefaults.standard.string(forKey: "com.auu.language") {
             language = Language(rawValue: languageCode) ?? .english
+        } else if let preferredLanguage = Locale.preferredLanguages.first {
+            language = check(preferredLanguage)
+        } else if let languageCode = locale.language.languageCode?.identifier {
+            language = check(languageCode)
         } else {
-            if let preferredLanguage = Locale.preferredLanguages.first {
-                language = check(preferredLanguage)
-            } else if let languageCode = locale.language.languageCode?.identifier {
-                language = check(languageCode)
-            } else {
-                language = .english
-            }
+            language = .english
         }
     }
     

@@ -20,7 +20,7 @@ struct LocalTitleModifler: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .onChange(of: languageManager.locale) { oldValue, newValue in
+            .onChange(of: languageManager.locale) { _ in
                 self.titleValue = languageManager.language.titleFor(navigationType)
             }
             .navigationTitle(titleValue)
