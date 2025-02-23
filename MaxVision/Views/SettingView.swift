@@ -11,8 +11,9 @@ struct SettingView: View {
     @ObservedObject private var tmpModel: SettingViewModel
     
     @ObservedObject private var viewModel: ViewModel
-    
+#if !os(macOS)
     @Environment(\.dismiss) var dismissAction
+#endif
     
     @EnvironmentObject private var languageManager: LanguageManager
     
@@ -94,7 +95,9 @@ struct SettingView: View {
     func makeConfirmView() -> some View {
         let button = Button {
             viewModel.merge(from: tmpModel)
+#if !os(macOS)
             dismissAction()
+#endif
         } label: {
             Text(lSaveNameKey)
                 .foregroundStyle(.white)
