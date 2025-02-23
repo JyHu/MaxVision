@@ -1,14 +1,14 @@
 //
-//  SuperVisualApp.swift
-//  SuperVisual
+//  MaxVisionApp.swift
+//  MaxVision
 //
-//  Created by hujinyou on 2025/2/13.
+//  Created by hujinyou on 2025/2/23.
 //
 
 import SwiftUI
 
 @main
-struct SuperVisualApp: App {
+struct MaxVisionApp: App {
     @ObservedObject var languageManager = LanguageManager()
     
     var body: some Scene {

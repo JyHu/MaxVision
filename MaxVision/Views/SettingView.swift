@@ -1,6 +1,6 @@
 //
 //  SettingView.swift
-//  SuperVisual
+//  MaxVision
 //
 //  Created by hujinyou on 2025/2/15.
 //

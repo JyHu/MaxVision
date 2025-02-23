@@ -7,32 +7,32 @@
 	objects = {
 
 /* Begin PBXFileReference section */
-		669296022D5E3D9F00275FFA /* Max Vision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Max Vision.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		66AFB8B12D6B11CE0046CC22 /* MaxVision.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MaxVision.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		66130F092D6430D80085BC08 /* Exceptions for "SuperVisual" folder in "SuperVisual" target */ = {
+		66AFB8F92D6B13230046CC22 /* Exceptions for "MaxVision" folder in "MaxVision" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
 				Info.plist,
 			);
-			target = 669296012D5E3D9F00275FFA /* SuperVisual */;
+			target = 66AFB8B02D6B11CE0046CC22 /* MaxVision */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		669296042D5E3D9F00275FFA /* SuperVisual */ = {
+		66AFB8B32D6B11CE0046CC22 /* MaxVision */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				66130F092D6430D80085BC08 /* Exceptions for "SuperVisual" folder in "SuperVisual" target */,
+				66AFB8F92D6B13230046CC22 /* Exceptions for "MaxVision" folder in "MaxVision" target */,
 			);
-			path = SuperVisual;
+			path = MaxVision;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		669295FF2D5E3D9F00275FFA /* Frameworks */ = {
+		66AFB8AE2D6B11CE0046CC22 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -42,18 +42,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		669295F92D5E3D9F00275FFA = {
+		66AFB8A82D6B11CD0046CC22 = {
 			isa = PBXGroup;
 			children = (
-				669296042D5E3D9F00275FFA /* SuperVisual */,
-				669296032D5E3D9F00275FFA /* Products */,
+				66AFB8B32D6B11CE0046CC22 /* MaxVision */,
+				66AFB8B22D6B11CE0046CC22 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		669296032D5E3D9F00275FFA /* Products */ = {
+		66AFB8B22D6B11CE0046CC22 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				669296022D5E3D9F00275FFA /* Max Vision.app */,
+				66AFB8B12D6B11CE0046CC22 /* MaxVision.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -61,44 +61,44 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		669296012D5E3D9F00275FFA /* SuperVisual */ = {
+		66AFB8B02D6B11CE0046CC22 /* MaxVision */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 669296102D5E3DA000275FFA /* Build configuration list for PBXNativeTarget "SuperVisual" */;
+			buildConfigurationList = 66AFB8C02D6B11CE0046CC22 /* Build configuration list for PBXNativeTarget "MaxVision" */;
 			buildPhases = (
-				669295FE2D5E3D9F00275FFA /* Sources */,
-				669295FF2D5E3D9F00275FFA /* Frameworks */,
-				669296002D5E3D9F00275FFA /* Resources */,
+				66AFB8AD2D6B11CE0046CC22 /* Sources */,
+				66AFB8AE2D6B11CE0046CC22 /* Frameworks */,
+				66AFB8AF2D6B11CE0046CC22 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				669296042D5E3D9F00275FFA /* SuperVisual */,
+				66AFB8B32D6B11CE0046CC22 /* MaxVision */,
 			);
-			name = SuperVisual;
+			name = MaxVision;
 			packageProductDependencies = (
 			);
-			productName = SuperVisual;
-			productReference = 669296022D5E3D9F00275FFA /* Max Vision.app */;
+			productName = MaxVision;
+			productReference = 66AFB8B12D6B11CE0046CC22 /* MaxVision.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		669295FA2D5E3D9F00275FFA /* Project object */ = {
+		66AFB8A92D6B11CD0046CC22 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1620;
 				LastUpgradeCheck = 1620;
 				TargetAttributes = {
-					669296012D5E3D9F00275FFA = {
+					66AFB8B02D6B11CE0046CC22 = {
 						CreatedOnToolsVersion = 16.2;
 					};
 				};
 			};
-			buildConfigurationList = 669295FD2D5E3D9F00275FFA /* Build configuration list for PBXProject "SuperVisual" */;
+			buildConfigurationList = 66AFB8AC2D6B11CD0046CC22 /* Build configuration list for PBXProject "MaxVision" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -106,30 +106,30 @@
 				Base,
 				"zh-Hans",
 				"zh-Hant",
-				es,
 				fr,
 				de,
-				ru,
+				it,
 				ja,
 				ko,
 				pt,
-				it,
+				ru,
+				es,
 				th,
 			);
-			mainGroup = 669295F92D5E3D9F00275FFA;
+			mainGroup = 66AFB8A82D6B11CD0046CC22;
 			minimizedProjectReferenceProxies = 1;
 			preferredProjectObjectVersion = 77;
-			productRefGroup = 669296032D5E3D9F00275FFA /* Products */;
+			productRefGroup = 66AFB8B22D6B11CE0046CC22 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				669296012D5E3D9F00275FFA /* SuperVisual */,
+				66AFB8B02D6B11CE0046CC22 /* MaxVision */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		669296002D5E3D9F00275FFA /* Resources */ = {
+		66AFB8AF2D6B11CE0046CC22 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -139,7 +139,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		669295FE2D5E3D9F00275FFA /* Sources */ = {
+		66AFB8AD2D6B11CE0046CC22 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -149,7 +149,7 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
-		6692960E2D5E3DA000275FFA /* Debug */ = {
+		66AFB8BE2D6B11CE0046CC22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -201,18 +201,16 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
-		6692960F2D5E3DA000275FFA /* Release */ = {
+		66AFB8BF2D6B11CE0046CC22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -258,100 +256,115 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
-				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
-				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
-		669296112D5E3DA000275FFA /* Debug */ = {
+		66AFB8C12D6B11CE0046CC22 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MaxVision/MaxVision.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_ASSET_PATHS = "\"SuperVisual/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MaxVision/Preview Content\"";
 				DEVELOPMENT_TEAM = EHNB49T236;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SuperVisual/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_FILE = MaxVision/Info.plist;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.auu.SuperVisual;
-				PRODUCT_NAME = "Max Vision";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Debug;
 		};
-		669296122D5E3DA000275FFA /* Release */ = {
+		66AFB8C22D6B11CE0046CC22 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = MaxVision/MaxVision.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 5;
-				DEVELOPMENT_ASSET_PATHS = "\"SuperVisual/Preview Content\"";
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"MaxVision/Preview Content\"";
 				DEVELOPMENT_TEAM = EHNB49T236;
+				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = SuperVisual/Info.plist;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_FILE = MaxVision/Info.plist;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSceneManifest_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphoneos*]" = YES;
+				"INFOPLIST_KEY_UILaunchScreen_Generation[sdk=iphonesimulator*]" = YES;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphoneos*]" = UIStatusBarStyleDefault;
+				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				MARKETING_VERSION = 1.0.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 15.2;
+				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.auu.SuperVisual;
-				PRODUCT_NAME = "Max Vision";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,7";
+				XROS_DEPLOYMENT_TARGET = 2.2;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		669295FD2D5E3D9F00275FFA /* Build configuration list for PBXProject "SuperVisual" */ = {
+		66AFB8AC2D6B11CD0046CC22 /* Build configuration list for PBXProject "MaxVision" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6692960E2D5E3DA000275FFA /* Debug */,
-				6692960F2D5E3DA000275FFA /* Release */,
+				66AFB8BE2D6B11CE0046CC22 /* Debug */,
+				66AFB8BF2D6B11CE0046CC22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		669296102D5E3DA000275FFA /* Build configuration list for PBXNativeTarget "SuperVisual" */ = {
+		66AFB8C02D6B11CE0046CC22 /* Build configuration list for PBXNativeTarget "MaxVision" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				669296112D5E3DA000275FFA /* Debug */,
-				669296122D5E3DA000275FFA /* Release */,
+				66AFB8C12D6B11CE0046CC22 /* Debug */,
+				66AFB8C22D6B11CE0046CC22 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 669295FA2D5E3D9F00275FFA /* Project object */;
+	rootObject = 66AFB8A92D6B11CD0046CC22 /* Project object */;
 }

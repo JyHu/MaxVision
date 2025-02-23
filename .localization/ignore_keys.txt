@@ -1,0 +1,6 @@
+// this is note
+/* this is note */
+
+com.auu.localization.ignorekey1 // this is note
+com.auu.localization.ignorekey2 /* this is note */
+com.auu.localization.ignorekey3
