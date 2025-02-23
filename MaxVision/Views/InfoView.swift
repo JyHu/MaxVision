@@ -12,12 +12,14 @@ struct InfoView: View {
     let quesColorInfo: RGBInfo?
     
     @ObservedObject var viewModel: ViewModel
-        
+    
     var body: some View {
         NavigationStack {
             makeContent()
+#if !os(macOS)
                 .navigationTitle(lHelpNameKey)
                 .navigationBarTitleDisplayMode(.inline)
+#endif
         }
     }
     
@@ -26,7 +28,7 @@ struct InfoView: View {
         if let normalColorInfo = normalColorInfo, let quesColorInfo = quesColorInfo {
             ScrollView {
                 VStack {
-                    GroupBox(lCurrentNameKey) {
+                    MyGroupBox(lCurrentNameKey) {
                         Grid(horizontalSpacing: 0, verticalSpacing: 15) {
                             GridRow {
                                 HStack {
@@ -127,7 +129,7 @@ struct InfoView: View {
     
     @ViewBuilder
     func makeToggleBox(_ title: LocalizedStringKey, value: Binding<Bool>, tips: LocalizedStringKey) -> some View {
-        GroupBox {
+        MyGroupBox {
             HStack {
                 Text(title)
                 

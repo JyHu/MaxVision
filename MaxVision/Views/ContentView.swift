@@ -7,6 +7,111 @@
 
 import SwiftUI
 
+#if os(macOS)
+
+enum SideType: String, Identifiable, CaseIterable {
+    case setting
+    case info
+    
+    var id: String { rawValue }
+    
+    var displayName: LocalizedStringKey {
+        switch self {
+        case .setting: lSettingNameKey
+        case .info: lHelpNameKey
+        }
+    }
+    
+    var keyEquivalent: KeyEquivalent {
+        switch self {
+        case .setting: KeyEquivalent("1")
+        case .info: KeyEquivalent("2")
+        }
+    }
+}
+
+struct ContentView: View {
+    @State private var side = SideType.setting
+    @ObservedObject var viewModel = ViewModel()
+    
+    @AppStorage("com.auu.confirmed") private var confirmed: Bool = false
+    @State private var begin: Bool = false
+    
+    var body: some View {
+        makeContent()
+            .localTitle(.root)
+//            .preferredColorScheme(viewModel.increaseContrast ? viewModel.bgType?.colorScheme : ColorScheme.light)
+            .sheet(isPresented: Binding(get: { !confirmed }, set: { confirmed = !$0 })) {
+                FirstUseTipView()
+            }
+            .toolbar {
+                ToolbarItem {
+                    Picker("", selection: $side) {
+                        ForEach(SideType.allCases) {
+                            Text($0.displayName)
+                                .tag($0)
+                                .keyboardShortcut($0.keyEquivalent, modifiers: .command)
+                        }
+                    }
+                    .labelsHidden()
+                    .pickerStyle(.segmented)
+                }
+            }
+            .onChange(of: viewModel.bgType) { oldValue, newValue in
+                print("bgType: \(viewModel.bgType?.rawValue ?? "nil")")
+            }
+    }
+}
+
+private extension ContentView {
+    @ViewBuilder
+    func makeContent() -> some View {
+        HSplitView {
+            VStack {
+                makeCanvasView()
+                    .frame(minWidth: 300)
+                
+                HStack {
+                    ActionButton(title: lCheckNameKey) {
+                        viewModel.showAnswer()
+                    }.disabled(viewModel.checkRes != .checking || !begin)
+                    
+                    if begin {
+                        ActionButton(title: lNextNameKey) {
+                            viewModel.general()
+                        }
+                    } else {
+                        ActionButton(title: lLocalizationBeginNameKey) {
+                            begin = true
+                            viewModel.general()
+                        }
+                    }
+                }
+                .frame(height: 50)
+                .frame(maxWidth: 720)
+            }
+            .padding(.all, 20)
+            
+            Group {
+                if side == .setting {
+                    SettingView(viewModel: viewModel)
+                } else {
+                    InfoView(
+                        normalColorInfo: viewModel.normalColorInfo,
+                        quesColorInfo: viewModel.quesColorInfo,
+                        viewModel: viewModel
+                    )
+                }
+            }
+            .padding(.vertical, 10)
+            .frame(minWidth: 360, maxWidth: 540)
+        }
+        .frame(minHeight: 540)
+    }
+}
+
+#else
+
 struct ContentView: View {
     @State private var showSetting = false
     @State private var showInfo = false
@@ -18,6 +123,16 @@ struct ContentView: View {
     @Environment(\.horizontalSizeClass) var horizontalSizeClass
     
     var body: some View {
+        makeContent()
+            .sheet(isPresented: Binding(get: { !confirmed }, set: { confirmed = !$0 })) {
+                FirstUseTipView()
+            }
+    }
+}
+
+private extension ContentView {
+    @ViewBuilder
+    func makeContent() -> some View {
         VStack {
             GeometryReader { proxy in
                 /// 横向
@@ -59,11 +174,71 @@ struct ContentView: View {
                 infoView.presentationDetents([.medium, .large])
             }
         }
-        .sheet(isPresented: Binding(get: { !confirmed }, set: { confirmed = !$0 })) {
-            FirstUseTipView()
-        }
     }
     
+    @ViewBuilder
+    func makeActionView(isHorizontal: Bool) -> some View {
+        let checkButton = ActionButton(title: lCheckNameKey) {
+            viewModel.showAnswer()
+        }.disabled(viewModel.checkRes != .checking || !begin)
+        
+        let helpButton = ActionButton(title: lHelpNameKey) {
+            showInfo = true
+        }
+        
+        let nextButton = ActionButton(title: lNextNameKey) {
+            viewModel.general()
+        }
+        
+        let settingButton = ActionButton(title: lSettingNameKey) {
+            showSetting = true
+        }
+        
+        if isHorizontal {
+            VStack {
+                checkButton
+                
+                helpButton
+                
+                if begin {
+                    nextButton
+                } else {
+                    ActionButton(title: lLocalizationBeginNameKey) {
+                        begin = true
+                        viewModel.general()
+                    }
+                }
+                
+                settingButton
+            }
+        } else {
+            Grid(horizontalSpacing: 10, verticalSpacing: 10) {
+                GridRow {
+                    checkButton
+                    
+                    helpButton
+                }
+                
+                GridRow {
+                    if begin {
+                        nextButton
+                    } else {
+                        ActionButton(title: lLocalizationBeginNameKey) {
+                            begin = true
+                            viewModel.general()
+                        }
+                    }
+                    
+                    settingButton
+                }
+            }
+        }
+    }
+}
+
+#endif
+
+private extension ContentView {
     @ViewBuilder
     func makeCanvasView() -> some View {
         GeometryReader { proxy in
@@ -79,7 +254,7 @@ struct ContentView: View {
             
             let top = (size.height - length * Double(viewModel.rows) - spaceWidth * Double((viewModel.rows - 1))) / 2
             let leading = (size.width - length * Double(viewModel.columns) - spaceWidth * Double((viewModel.columns - 1))) / 2
-
+            
             Canvas { context, _ in
                 func drawAt(row: Int, col: Int) {
                     let rect = CGRectMake(
@@ -147,92 +322,4 @@ struct ContentView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .disabled(!begin)
     }
-    
-    @ViewBuilder
-    func makeActionView(isHorizontal: Bool) -> some View {
-        let checkButton = ActionButton(title: lCheckNameKey) {
-            viewModel.showAnswer()
-        }.disabled(viewModel.checkRes != .checking || !begin)
-        
-        let helpButton = ActionButton(title: lHelpNameKey) {
-            showInfo = true
-        }
-        
-        let nextButton = ActionButton(title: lNextNameKey) {
-            viewModel.general()
-        }
-        
-        let settingButton = ActionButton(title: lSettingNameKey) {
-            showSetting = true
-        }
-        
-        if isHorizontal {
-            VStack {
-                checkButton
-                
-                helpButton
-                
-                if begin {
-                    nextButton
-                } else {
-                    ActionButton(title: lLocalizationBeginNameKey) {
-                        begin = true
-                        viewModel.general()
-                    }
-                }
-                
-                settingButton
-            }
-        } else {
-            Grid(horizontalSpacing: 10, verticalSpacing: 10) {
-                GridRow {
-                    checkButton
-                    
-                    helpButton
-                }
-                
-                GridRow {
-                    if begin {
-                        nextButton
-                    } else {
-                        ActionButton(title: lLocalizationBeginNameKey) {
-                            begin = true
-                            viewModel.general()
-                        }
-                    }
-                    
-                    settingButton
-                }
-            }
-        }
-    }
-}
-
-struct FirstUseTipView: View {
-    @Environment(\.dismiss) private var dismissAction
-    @AppStorage("com.auu.confirmed") private var confirmed: Bool = false
-    
-    var body: some View {
-        NavigationStack {
-            VStack {
-                ScrollView {
-                    Text(lLocalizationFirstTipsNameKey)
-                }
-                
-                ActionButton(title: lLocalizationOKNameKey) {
-                    dismissAction()
-                }
-            }
-            .padding(.all, 20)
-            .navigationBarTitleDisplayMode(.inline)
-            .navigationTitle(lTipsNameKey)
-        }
-        .onDisappear {
-            confirmed = true
-        }
-    }
-}
-
-#Preview {
-    ContentView()
 }

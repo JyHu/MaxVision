@@ -22,6 +22,7 @@ struct ActionButton: View {
                 .background(isEnabled ? .blue : .blue.opacity(0.6))
                 .clipShape(RoundedRectangle(cornerRadius: 8))
         }
+        .buttonStyle(.borderless)
     }
 }
 

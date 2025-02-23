@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import UIKit
 
 struct SettingView: View {
     @ObservedObject private var tmpModel: SettingViewModel
@@ -16,87 +15,118 @@ struct SettingView: View {
     @Environment(\.dismiss) var dismissAction
     
     @EnvironmentObject private var languageManager: LanguageManager
-            
+    
     init(viewModel: ViewModel) {
         self.tmpModel = SettingViewModel(model: viewModel)
         self.viewModel = viewModel
     }
     
     var body: some View {
+#if os(macOS)
+        VStack {
+            makeContent()
+            
+            makeConfirmView()
+        }
+#else
         NavigationStack {
             ZStack(alignment: .bottom) {
-                ScrollView {
-                    VStack(spacing: 10) {
-                        makeConfigBox(lRGBRangeNameKey, tips: lRGBRangeTipsNameKey) {
-                            SliderRow(.R, value: tmpModel.obR, viewModel: tmpModel).padding(.top, 10)
-                            SliderRow(.G, value: tmpModel.obG, viewModel: tmpModel)
-                            SliderRow(.B, value: tmpModel.obB, viewModel: tmpModel)
-                        }
-                        
-                        makeConfigBox(lRGBOffsetNameKey, tips: lRGBOffsetTipsNameKey) {
-                            makeRGBRow(.R, value: $tmpModel.rf)
-                            makeRGBRow(.G, value: $tmpModel.gf)
-                            makeRGBRow(.B, value: $tmpModel.bf)
-                        }
-                        
-                        makeConfigBox(lGridNameKey, tips: lGridTipsNameKey) {
-                            makeGridRow(lGridRowsNameKey, value: $tmpModel.rows)
-                            makeGridRow(lGridColumnsNameKey, value: $tmpModel.columns)
-                        }
-                        
-                        GroupBox {
-                            HStack {
-                                Text(lLanguageNameKey)
-                                Spacer()
-                                Picker("", selection: $languageManager.language) {
-                                    ForEach(Language.allCases, id: \.self) {
-                                        Text($0.displayName).tag($0)
-                                    }
-                                }.labelsHidden()
-                            }
-                        }
-                        
-                        Text(lLocalizationTranslateTipsNameKey)
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .padding(.horizontal, 18)
-                            .padding(.vertical, 30)
-                    }
-                    .padding(.horizontal, 18)
-                    .padding(.bottom, 72)
-                }
+                makeContent()
                 
-                VStack(alignment: .center, spacing: 0) {
-                    Divider()
-                    
-                    Spacer()
-                    
-                    Button {
-                        viewModel.merge(from: tmpModel)
-                        dismissAction()
-                    } label: {
-                        Text(lSaveNameKey)
-                            .foregroundStyle(.white)
-                            .frame(maxWidth: .infinity)
-                            .frame(width: 240, height: 44)
-                            .background(.blue)
-                            .clipShape(RoundedRectangle(cornerRadius: 8))
-                    }
-                    
-                    Spacer()
-                }
-                .frame(height: 72)
-                .frame(maxWidth: .infinity)
-                .background(Material.ultraThinMaterial)
+                makeConfirmView()
             }
             .navigationBarTitleDisplayMode(.inline)
             .localTitle(.setting)
         }
+#endif
     }
     
     @ViewBuilder
-    func makeConfigBox(_ title: LocalizedStringKey, tips: LocalizedStringKey, @ViewBuilder content: () -> some View) -> some View {
-        GroupBox(title) {
+    func makeContent() -> some View {
+        ScrollView {
+            VStack(spacing: 10) {
+                makeConfigBox(lRGBRangeNameKey, tips: lRGBRangeTipsNameKey) {
+                    SliderRow(.R, value: tmpModel.obR, viewModel: tmpModel).padding(.top, 10)
+                    SliderRow(.G, value: tmpModel.obG, viewModel: tmpModel)
+                    SliderRow(.B, value: tmpModel.obB, viewModel: tmpModel)
+                }
+                
+                makeConfigBox(lRGBOffsetNameKey, tips: lRGBOffsetTipsNameKey) {
+                    makeRGBRow(.R, value: $tmpModel.rf)
+                    makeRGBRow(.G, value: $tmpModel.gf)
+                    makeRGBRow(.B, value: $tmpModel.bf)
+                }
+                
+                makeConfigBox(lGridNameKey, tips: lGridTipsNameKey) {
+                    makeGridRow(lGridRowsNameKey, value: $tmpModel.rows)
+                    makeGridRow(lGridColumnsNameKey, value: $tmpModel.columns)
+                }
+                
+                MyGroupBox {
+                    HStack {
+                        Text(lLanguageNameKey)
+                        Spacer()
+                        Picker("", selection: $languageManager.language) {
+                            ForEach(Language.allCases, id: \.self) {
+                                Text($0.displayName).tag($0)
+                            }
+                        }
+                        .labelsHidden()
+                        .buttonStyle(.borderless)
+                    }
+                }
+                
+                Text(lLocalizationTranslateTipsNameKey)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 18)
+                    .padding(.vertical, 30)
+            }
+            .padding(.horizontal, 18)
+            .padding(.bottom, 72)
+        }
+    }
+    
+    @ViewBuilder
+    func makeConfirmView() -> some View {
+        let button = Button {
+            viewModel.merge(from: tmpModel)
+            dismissAction()
+        } label: {
+            Text(lSaveNameKey)
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity)
+                .frame(width: 240, height: 44)
+                .background(.blue)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+        }
+            .buttonStyle(.borderless)
+        
+#if os(macOS)
+        HStack {
+            button
+        }
+        .frame(height: 50)
+        .padding(.vertical, 10)
+#else
+        VStack(alignment: .center, spacing: 0) {
+            Divider()
+            
+            Spacer()
+            
+            button
+            
+            Spacer()
+        }
+        .frame(height: 72)
+        .frame(maxWidth: .infinity)
+        .background(Material.ultraThinMaterial)
+#endif
+    }
+    
+    @ViewBuilder
+    func makeConfigBox(_ title: LocalizedStringKey, tips: LocalizedStringKey, @ViewBuilder content: @escaping () -> some View) -> some View {
+        MyGroupBox(title) {
             content()
             
             HStack {
@@ -126,6 +156,7 @@ struct SettingView: View {
                 Image(systemName: isChecked ? "checkmark.circle" : "circle")
             }
             .frame(width: 30)
+            .buttonStyle(.borderless)
             
             Text(component.name)
             
@@ -147,7 +178,7 @@ struct SettingView: View {
             
             Text("\(value.wrappedValue)")
                 .fontDesign(.monospaced)
-
+            
             Stepper("", value: value, in: 4...10, step: 1).labelsHidden()
         }
     }

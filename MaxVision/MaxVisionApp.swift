@@ -13,11 +13,16 @@ struct MaxVisionApp: App {
     
     var body: some Scene {
         WindowGroup {
+            let content = ContentView()
+                .environment(\.locale, languageManager.locale)
+                .environmentObject(languageManager)
+#if os(macOS)
+            content
+#else
             NavigationStack {
-                ContentView()
-                    .environment(\.locale, languageManager.locale)
-                    .environmentObject(languageManager)
+                content
             }
+#endif
         }
     }
 }

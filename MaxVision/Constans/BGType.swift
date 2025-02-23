@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-enum BGType {
+enum BGType: String {
     case light
     case dark
     
